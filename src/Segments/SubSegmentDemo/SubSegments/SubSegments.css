@@ -1,0 +1,33 @@
+.sub-segment-demo-pane {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    height: 100%;
+    padding: 24px;
+    box-sizing: border-box;
+    text-align: left;
+    background: rgb(var(--white-rgb) / 0.06);
+    border: 1px solid rgb(var(--white-rgb) / 0.12);
+    border-radius: 12px;
+}
+
+.sub-segment-demo-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.sub-segment-demo-text {
+    margin: 0;
+    max-width: 640px;
+    font-size: 14px;
+    color: rgb(var(--white-rgb) / 0.7);
+}
+
+.sub-segment-demo-stats {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    height: 120px;
+}

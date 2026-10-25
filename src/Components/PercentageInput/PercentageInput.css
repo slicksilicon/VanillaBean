@@ -1,0 +1,239 @@
+/* PercentageInput with Liquid Glass Design */
+.percentage-input-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.percentage-input-container.left {
+    flex-direction: column;
+}
+
+/* Description Styling */
+.percentage-input-description {
+    color: rgb(var(--white-rgb) / 0.8);
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgb(var(--black-rgb) / 0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.percentage-input-description.top {
+    margin-bottom: 4px;
+}
+
+.percentage-input-description.left {
+    flex-shrink: 0;
+    min-width: 80px;
+    max-width: 30%;
+    text-align: right;
+    padding-right: 8px;
+}
+
+.percentage-input-main-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+    gap: 0;
+}
+
+.percentage-input-container.left .percentage-input-main-row {
+    gap: 12px;
+}
+
+/* Percentage Symbol Styling */
+.percentage-symbol {
+    display: flex;
+    flex-shrink: 0;
+    min-height: 41px;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+    color: rgb(var(--danger-light-rgb) / 0.7);
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgb(var(--black-rgb) / 0.3);
+    background: rgb(var(--white-rgb) / 0.3);
+    border: 1px solid rgb(var(--white-rgb) / 0.2);
+    border-radius: 0 12px 12px 0;
+    box-shadow: 
+        0 4px 16px rgb(var(--black-rgb) / 0.1),
+        inset 0 1px 0 rgb(var(--white-rgb) / 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    border-left: none;
+    box-sizing: border-box;
+}
+
+/* Main Percentage Input Wrapper */
+.percentage-input-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    min-width: 120px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Percentage Input Field */
+.percentage-input-field {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 41px;
+    padding: 8px 12px;
+    background: rgb(var(--white-rgb) / 0.1);
+    border: 1px solid rgb(var(--white-rgb) / 0.2);
+    border-radius: 12px 0 0 12px;
+    border-right: none;
+    color: rgb(var(--danger-light-rgb) / 0.9);
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    outline: none;
+    box-shadow: 
+        0 4px 16px rgb(var(--black-rgb) / 0.1),
+        inset 0 1px 0 rgb(var(--white-rgb) / 0.2);
+    font-weight: 500;
+    box-sizing: border-box;
+    font-family: inherit;
+    text-align: right;
+}
+
+.percentage-input-field::placeholder {
+    color: rgb(var(--white-rgb) / 0.5);
+    font-weight: 400;
+}
+
+.percentage-input-main-row:hover .percentage-input-field {
+    background: rgb(var(--white-rgb) / 0.15);
+    border-color: rgb(var(--white-rgb) / 0.3);
+    box-shadow: 
+        0 6px 20px rgb(var(--black-rgb) / 0.15),
+        inset 0 1px 0 rgb(var(--white-rgb) / 0.3);
+}
+
+.percentage-input-main-row:hover .percentage-symbol {
+    background: rgb(var(--white-rgb) / 0.35);
+    border-color: rgb(var(--white-rgb) / 0.3);
+    box-shadow: 
+        0 6px 20px rgb(var(--black-rgb) / 0.15),
+        inset 0 1px 0 rgb(var(--white-rgb) / 0.3);
+}
+
+/* Focus States */
+.percentage-input-wrapper.focused .percentage-input-field {
+    background: rgb(var(--white-rgb) / 0.2);
+    border-color: rgb(var(--white-rgb) / 0.4);
+    box-shadow: 
+        0 4px 16px rgb(var(--black-rgb) / 0.2),
+        inset 0 1px 0 rgb(var(--white-rgb) / 0.3);
+}
+
+.percentage-input-wrapper.focused + .percentage-symbol,
+.percentage-input-main-row:has(.percentage-input-wrapper.focused) .percentage-symbol {
+    background: rgb(var(--white-rgb) / 0.35);
+    border-color: rgb(var(--white-rgb) / 0.4);
+    box-shadow: 
+        0 4px 16px rgb(var(--black-rgb) / 0.2),
+        inset 0 1px 0 rgb(var(--white-rgb) / 0.3);
+}
+
+.percentage-input-field:focus-visible {
+    outline: 2px solid rgb(var(--white-rgb) / 0.5);
+    outline-offset: 2px;
+}
+
+/* Disabled State */
+.percentage-input-wrapper.disabled .percentage-input-field {
+    background: rgb(var(--white-rgb) / 0.05);
+    border-color: rgb(var(--white-rgb) / 0.1);
+    color: rgb(var(--white-rgb) / 0.4);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.percentage-input-wrapper.disabled + .percentage-symbol,
+.percentage-input-main-row:has(.percentage-input-wrapper.disabled) .percentage-symbol {
+    background: rgb(var(--white-rgb) / 0.05);
+    border-color: rgb(var(--white-rgb) / 0.1);
+    color: rgb(var(--white-rgb) / 0.4);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.percentage-input-wrapper.disabled .percentage-input-field:hover,
+.percentage-input-main-row:has(.percentage-input-wrapper.disabled):hover .percentage-symbol,
+.percentage-input-main-row:has(.percentage-input-wrapper.disabled):hover .percentage-input-field {
+    background: rgb(var(--white-rgb) / 0.05);
+    border-color: rgb(var(--white-rgb) / 0.1);
+    transform: none;
+    box-shadow: 
+        0 4px 16px rgb(var(--black-rgb) / 0.1),
+        inset 0 1px 0 rgb(var(--white-rgb) / 0.2);
+}
+
+.percentage-input-wrapper.disabled .percentage-input-field::placeholder {
+    color: rgb(var(--white-rgb) / 0.3);
+}
+
+/* Selection styling */
+.percentage-input-field::selection {
+    background: rgb(var(--white-rgb) / 0.3);
+    color: rgb(var(--black-rgb) / 0.8);
+}
+
+/* Animation for initial load */
+@keyframes percentageInputFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.percentage-input-container {
+    animation: percentageInputFadeIn 0.4s ease-out;
+}
+
+/* Responsive font sizing adjustments */
+@container (max-width: 150px) {
+    .percentage-input-field {
+        font-size: 13px !important;
+    }
+    
+    .percentage-symbol {
+        font-size: 13px !important;
+    }
+    
+    .percentage-input-description {
+        font-size: 12px !important;
+    }
+}
+
+@container (max-width: 100px) {
+    .percentage-input-field {
+        font-size: 11px !important;
+    }
+    
+    .percentage-symbol {
+        font-size: 11px !important;
+        min-width: 40px;
+    }
+    
+    .percentage-input-description {
+        font-size: 10px !important;
+    }
+    
+    .percentage-input-field,
+    .percentage-symbol {
+        padding: 6px 8px;
+        min-height: 30px;
+    }
+}

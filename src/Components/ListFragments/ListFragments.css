@@ -1,0 +1,183 @@
+/* Liquid Glass List Fragments Styles */
+.list-fragments {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    background: rgb(var(--white-rgb) / 0.05);
+    border-radius: 16px;
+    border: 1px solid rgb(var(--white-rgb) / 0.1);
+    box-shadow: 0 4px 16px rgb(var(--black-rgb) / 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height: calc(100% - 32px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.list-fragment-item {
+    padding: 12px 16px;
+    background: rgb(var(--white-rgb) / 0.08);
+    border-radius: 12px;
+    border: 1px solid rgb(var(--white-rgb) / 0.15);
+    box-shadow: 0 4px 16px rgb(var(--black-rgb) / 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    color: rgb(var(--white-rgb) / 0.9);
+    text-shadow: 0 1px 2px rgb(var(--black-rgb) / 0.3);
+}
+
+.list-fragment-item:hover {
+    background: rgb(var(--white-rgb) / 0.12);
+    border-color: rgb(var(--white-rgb) / 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgb(var(--black-rgb) / 0.15);
+}
+
+.list-fragment-item:active {
+    transform: translateY(0);
+}
+
+/* Scrollbar Styling */
+.list-fragments::-webkit-scrollbar {
+    width: 8px;
+}
+
+.list-fragments::-webkit-scrollbar-track {
+    background: rgb(var(--white-rgb) / 0.05);
+    border-radius: 10px;
+}
+
+.list-fragments::-webkit-scrollbar-thumb {
+    background: rgb(var(--white-rgb) / 0.2);
+    border-radius: 10px;
+}
+
+.list-fragments::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--white-rgb) / 0.3);
+}
+
+/* Sentinel for Infinite Scroll */
+.list-fragment-sentinel {
+    padding: 16px;
+    text-align: center;
+}
+
+.list-fragment-loading {
+    color: rgb(var(--white-rgb) / 0.7);
+    font-size: 14px;
+    font-weight: 500;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Variant Styles */
+
+/* Primary Variant */
+.list-fragments-primary {
+    background: rgb(var(--white-rgb) / 0.15);
+    border-color: rgb(var(--white-rgb) / 0.25);
+}
+
+.list-fragments-primary .list-fragment-item {
+    background: rgb(var(--white-rgb) / 0.2);
+    border-color: rgb(var(--white-rgb) / 0.3);
+    color: rgb(var(--white-rgb));
+}
+
+.list-fragments-primary .list-fragment-item:hover {
+    background: rgb(var(--white-rgb) / 0.3);
+    border-color: rgb(var(--white-rgb) / 0.5);
+}
+
+/* Secondary Variant */
+.list-fragments-secondary {
+    background: rgb(var(--white-rgb) / 0.08);
+    border-color: rgb(var(--white-rgb) / 0.15);
+}
+
+.list-fragments-secondary .list-fragment-item {
+    background: rgb(var(--white-rgb) / 0.1);
+    border-color: rgb(var(--white-rgb) / 0.2);
+    color: rgb(var(--white-rgb) / 0.9);
+}
+
+.list-fragments-secondary .list-fragment-item:hover {
+    background: rgb(var(--white-rgb) / 0.18);
+    border-color: rgb(var(--white-rgb) / 0.35);
+}
+
+/* Success Variant */
+.list-fragments-success {
+    background: rgb(var(--success-rgb) / 0.1);
+    border-color: rgb(var(--success-rgb) / 0.3);
+}
+
+.list-fragments-success .list-fragment-item {
+    background: rgb(var(--success-rgb) / 0.15);
+    border-color: rgb(var(--success-rgb) / 0.35);
+    color: rgb(var(--success-light-rgb));
+}
+
+.list-fragments-success .list-fragment-item:hover {
+    background: rgb(var(--success-rgb) / 0.25);
+    border-color: rgb(var(--success-rgb) / 0.5);
+}
+
+/* Info Variant */
+.list-fragments-info {
+    background: rgb(var(--info-rgb) / 0.1);
+    border-color: rgb(var(--info-rgb) / 0.3);
+}
+
+.list-fragments-info .list-fragment-item {
+    background: rgb(var(--info-rgb) / 0.15);
+    border-color: rgb(var(--info-rgb) / 0.35);
+    color: rgb(var(--info-light-rgb));
+}
+
+.list-fragments-info .list-fragment-item:hover {
+    background: rgb(var(--info-rgb) / 0.25);
+    border-color: rgb(var(--info-rgb) / 0.5);
+}
+
+/* Warning Variant */
+.list-fragments-warning {
+    background: rgb(var(--warning-rgb) / 0.1);
+    border-color: rgb(var(--warning-rgb) / 0.3);
+}
+
+.list-fragments-warning .list-fragment-item {
+    background: rgb(var(--warning-rgb) / 0.15);
+    border-color: rgb(var(--warning-rgb) / 0.35);
+    color: rgb(var(--warning-light-rgb));
+}
+
+.list-fragments-warning .list-fragment-item:hover {
+    background: rgb(var(--warning-rgb) / 0.25);
+    border-color: rgb(var(--warning-rgb) / 0.5);
+}
+
+/* Danger Variant */
+.list-fragments-danger {
+    background: rgb(var(--danger-rgb) / 0.1);
+    border-color: rgb(var(--danger-rgb) / 0.3);
+}
+
+.list-fragments-danger .list-fragment-item {
+    background: rgb(var(--danger-rgb) / 0.15);
+    border-color: rgb(var(--danger-rgb) / 0.35);
+    color: rgb(var(--danger-light-rgb));
+}
+
+.list-fragments-danger .list-fragment-item:hover {
+    background: rgb(var(--danger-rgb) / 0.25);
+    border-color: rgb(var(--danger-rgb) / 0.5);
+}

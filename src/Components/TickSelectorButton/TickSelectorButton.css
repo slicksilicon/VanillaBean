@@ -1,0 +1,70 @@
+/* TickSelectorButton — a pill holding its own tick and label.
+ *
+ * Every dimension derives from --tick-selector-size, set inline from the `size` prop, so one
+ * number scales the control. The tick is laid out whether or not it is showing (see below),
+ * which is what keeps a ticked pill exactly the same size as an unticked one. */
+
+.tick-selector {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    gap: calc(var(--tick-selector-size) * 0.16);
+    height: var(--tick-selector-size);
+    padding: 0 calc(var(--tick-selector-size) * 0.5);
+    border: 1px solid rgb(var(--white-rgb) / 0.22);
+    border-radius: 999px;
+    background: rgb(var(--white-rgb) / 0.06);
+    color: rgb(var(--white-rgb) / 0.62);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: calc(var(--tick-selector-size) * 0.44);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.tick-selector:hover:not(:disabled) {
+    background: rgb(var(--white-rgb) / 0.12);
+    color: rgb(var(--white-rgb) / 0.95);
+}
+
+.tick-selector:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.tick-selector-selected {
+    background: rgb(var(--info-rgb) / 0.22);
+    border-color: rgb(var(--info-rgb) / 0.55);
+    color: rgb(var(--info-light-rgb));
+}
+
+.tick-selector-selected:hover:not(:disabled) {
+    background: rgb(var(--info-rgb) / 0.32);
+    color: rgb(var(--info-light-rgb));
+}
+
+/* `visibility` rather than `display` or conditional rendering: the glyph keeps its box when
+   hidden, so ticking changes only the colour, never the width. */
+.tick-selector-tick {
+    visibility: hidden;
+    font-size: calc(var(--tick-selector-size) * 0.42);
+    line-height: 1;
+}
+
+.tick-selector-selected .tick-selector-tick {
+    visibility: visible;
+}
+
+.tick-selector-label {
+    line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tick-selector {
+        transition: none;
+    }
+}

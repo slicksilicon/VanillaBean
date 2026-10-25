@@ -1,0 +1,29 @@
+.backend-demo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.backend-demo-stats {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    height: 120px;
+}
+
+.backend-demo-text {
+    font-size: 13px;
+    color: rgb(var(--white-rgb) / 0.7);
+}
+
+.backend-demo-text code {
+    padding: 1px 5px;
+    border-radius: 4px;
+    background: rgb(var(--white-rgb) / 0.1);
+}

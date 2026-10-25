@@ -1,0 +1,138 @@
+.status-pill {
+    display : flex;
+    flex-direction: row;
+    width : 100px;
+    height: 26px;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    border-radius: 6px;
+    border: 1px solid transparent;
+    box-shadow: 0 4px 16px rgb(var(--black-rgb) / 0.1);
+    box-sizing: border-box;
+}
+
+.status-pill-clickable {
+    cursor: pointer;
+}
+
+.status-pill-clickable:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgb(var(--black-rgb) / 0.15);
+}
+
+.status-pill-clickable:active {
+    transform: translateY(0px);
+    transition: all 0.1s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.status-pill-clickable:focus-visible {
+    outline: 2px solid rgb(var(--white-rgb) / 0.5);
+    outline-offset: 2px;
+}
+
+/* Status Pill Variants */
+
+/* Primary Status Pill */
+.status-pill-primary {
+    background: rgb(var(--white-rgb) / 0.2);
+    border-color: rgb(var(--white-rgb) / 0.3);
+    color: rgb(var(--white-rgb));
+}
+
+.status-pill-primary.status-pill-clickable:hover {
+    background: rgb(var(--white-rgb) / 0.3);
+    border-color: rgb(var(--white-rgb) / 0.5);
+    color: rgb(var(--white-rgb));
+}
+
+.status-pill-primary.status-pill-clickable:active {
+    background: rgb(var(--white-rgb) / 0.25);
+}
+
+/* Success Status Pill */
+.status-pill-success {
+    background: rgb(var(--success-rgb) / 0.2);
+    border-color: rgb(var(--success-rgb) / 0.4);
+    color: rgb(var(--success-light-rgb));
+}
+
+.status-pill-success.status-pill-clickable:hover {
+    background: rgb(var(--success-rgb) / 0.3);
+    border-color: rgb(var(--success-rgb) / 0.6);
+    color: rgb(var(--success-light-rgb));
+}
+
+.status-pill-success.status-pill-clickable:active {
+    background: rgb(var(--success-rgb) / 0.25);
+}
+
+/* Info Status Pill */
+.status-pill-info {
+    background: rgb(var(--info-rgb) / 0.2);
+    border-color: rgb(var(--info-rgb) / 0.4);
+    color: rgb(var(--info-light-rgb));
+}
+
+.status-pill-info.status-pill-clickable:hover {
+    background: rgb(var(--info-rgb) / 0.3);
+    border-color: rgb(var(--info-rgb) / 0.6);
+    color: rgb(var(--info-light-rgb));
+}
+
+.status-pill-info.status-pill-clickable:active {
+    background: rgb(var(--info-rgb) / 0.25);
+}
+
+/* Warning Status Pill */
+.status-pill-warning {
+    background: rgb(var(--warning-rgb) / 0.2);
+    border-color: rgb(var(--warning-rgb) / 0.4);
+    color: rgb(var(--warning-light-rgb));
+}
+
+.status-pill-warning.status-pill-clickable:hover {
+    background: rgb(var(--warning-rgb) / 0.3);
+    border-color: rgb(var(--warning-rgb) / 0.6);
+    color: rgb(var(--warning-light-rgb));
+}
+
+.status-pill-warning.status-pill-clickable:active {
+    background: rgb(var(--warning-rgb) / 0.25);
+}
+
+/* Danger Status Pill */
+.status-pill-danger {
+    background: rgb(var(--danger-rgb) / 0.2);
+    border-color: rgb(var(--danger-rgb) / 0.4);
+    color: rgb(var(--danger-light-rgb));
+}
+
+.status-pill-danger.status-pill-clickable:hover {
+    background: rgb(var(--danger-rgb) / 0.3);
+    border-color: rgb(var(--danger-rgb) / 0.6);
+    color: rgb(var(--danger-light-rgb));
+}
+
+.status-pill-danger.status-pill-clickable:active {
+    background: rgb(var(--danger-rgb) / 0.25);
+}
+
+/* Animation for initial load */
+@keyframes statusPillFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.status-pill {
+    animation: statusPillFadeIn 0.3s ease-out;
+}

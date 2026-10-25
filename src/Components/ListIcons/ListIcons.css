@@ -1,0 +1,83 @@
+.list-icons-container {
+    display: inline-block;
+    width: fit-content;
+}
+
+.list-icons-item {
+    position: relative; /* Essential for absolute positioning of the blur layer */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    cursor: default;
+    z-index: 1; /* Establishes a stacking context */
+    background: transparent;
+    overflow: visible; /* Allow the blur to bleed out slightly if desired, or hidden to contain it */
+}
+
+/* Hover State: The Blur Effect */
+.list-icons-item:hover::before {
+    content: "";
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Use the CSS variable passed from React */
+    background-image: var(--icon-bg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    /* The Magic Blur */
+    filter: blur(5px);
+    
+    /* Scale up slightly so the blur extends beyond the icon edges */
+    transform: scale(1.0); 
+    
+    /* Place it behind the icon content */
+    z-index: -1; 
+    
+    /* Adjust opacity for the strength of the glow */
+    opacity: 0.6;
+}
+
+.list-icons-item[role="button"] {
+    cursor: pointer;
+}
+
+.list-icons-item[role="button"]:hover {
+    transform: scale(1.05); /* Slight grow effect on hover */
+}
+
+.list-icons-item[role="button"]:active {
+    transform: scale(0.98);
+}
+
+.list-icons-item:focus-visible {
+    outline: 2px solid rgb(var(--white-rgb) / 0.5);
+    outline-offset: 2px;
+}
+
+/* Image & SVG Wrapper Styles */
+/* These ensure the actual icon sits clearly ON TOP of the blur */
+.list-icons-image,
+.list-icons-svg-wrapper {
+    position: relative;
+    z-index: 2;
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ensure SVG fills the wrapper correctly */
+.list-icons-svg-wrapper svg {
+    width: 100%;
+    height: 100%;
+}

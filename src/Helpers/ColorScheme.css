@@ -1,0 +1,324 @@
+.color-scheme-orange {
+    --background : #F0EBDF;
+    --foreground-title : whitesmoke;
+    --foreground-data : rgba(245, 235, 15, 1);
+    --hover-background : aliceblue;    
+	--color1: #FFE8CC;
+    --color2: #FFD9A6;
+    --color3: #FFC880;
+    --color4: #FFB85C;
+    --color5 : #FFA726;
+    --color6: #FF8F00;
+    --color7: #F57C00;
+    --color8: #E65100;
+    --color9: #D84315;
+    --color10: #BF360C;
+    --color11: #A62800;
+    --color12: #8B1F00;
+}
+
+.color-scheme-green {
+    --background :#EDF5EA;
+    --foreground-title : whitesmoke;
+    --foreground-data : rgba(245, 235, 115, 0.9);
+    --hover-background : greenyellow;
+    --color1: #E4F4E0;
+    --color2: #D1EACE;
+    --color3: #BADDBA;
+    --color4: #A3D1A5;
+    --color5 : #89C690;
+    --color6: #6FA976;
+    --color7: #6FA976;
+    --color8: #375A3C;
+    --color9: #183421;
+    --color10: #223224;
+    --color11:#120f0f;
+    --color12:#110f0f;	
+}
+
+.color-scheme-blue {
+    --background :#E5EFF4;
+    --foreground-title : whitesmoke;
+    --foreground-data : rgba(245, 235, 115, 0.9);
+    --hover-background : aqua;
+    --color1: #D2EFF8;
+    --color2: #BEE9F5;
+    --color3: #A8E1F2;
+    --color4: #7ACCE8;
+    --color5 : #7ACCE8;
+    --color6: #479DD0;
+    --color7: #3B7FC2;
+    --color8: #224DA2;
+    --color9: #0B1376;
+    --color10: #070845;	
+    --color11:#120f0f;
+    --color12:#110f0f;
+}
+
+/* Simple Black and White Scheme */
+.color-scheme-primary{
+    --background : #F8F9FA;
+    --foreground-title : whitesmoke;
+    --foreground-data : rgba(245, 235, 115, 0.9);
+    --hover-background : lightgray;
+    --color1: #FFFFFF;
+    --color2: #F1F3F4;
+    --color3: #E8EAED;
+    --color4: #DADCE0;
+    --color5 : #BDC1C6;
+    --color6: #9AA0A6;
+    --color7: #80868B;
+    --color8: #5F6368;
+    --color9: #3C4043;
+    --color10: #202124;
+    --color11: #120f0f;
+    --color12: #110f0f;
+}
+
+/* Additional Color Schemes for Charts */
+.color-scheme-purple {
+    --background : #F3E8FF;
+    --foreground-title : whitesmoke;
+    --foreground-data : rgba(245, 235, 115, 0.9);
+    --hover-background : maroon;
+    --color1: #F3E8FF;
+    --color2: #E9D5FF;
+    --color3: #D8B4FE;
+    --color4: #C084FC;
+    --color5 : #A855F7;
+    --color6: #9333EA;
+    --color7: #7C3AED;
+    --color8: #6D28D9;
+    --color9: #5B21B6;
+    --color10: #4C1D95;
+    --color11: #3b1377;
+    --color12: #260b4e;
+}
+
+.color-scheme-red {
+    --background : #FEF2F2;
+    --foreground-title : whitesmoke;
+    --foreground-data : rgba(245, 235, 115, 0.9);
+    --hover-background : lightcoral;
+    --color1: #FEF2F2;
+    --color2: #FEE2E2;
+    --color3: #FECACA;
+    --color4: #FCA5A5;
+    --color5 : #F87171;
+    --color6: #EF4444;
+    --color7: #DC2626;
+    --color8: #B91C1C;
+    --color9: #991B1B;
+    --color10: #7F1D1D;
+    --color11: #450A0A;
+    --color12: #2C0303;
+}
+
+.color-scheme-yellow {
+    --background : #FFFBEB;
+    --foreground-title : whitesmoke;
+    --foreground-data : rgba(245, 235, 115, 0.9);
+    --hover-background : goldenrod;
+    --color1: #FFFBEB;
+    --color2: #FEF3C7;
+    --color3: #FDE68A;
+    --color4: #FBBF24;
+    --color5 : #F59E0B;
+    --color6: #D97706;
+    --color7: #B45309;
+    --color8: #92400E;
+    --color9: #78350F;
+    --color10: #451A03;
+    --color11: #450A0A;
+    --color12: #2C0303;
+}
+
+.color-scheme-pastel-large {
+    --background: #F8F8FF; /* Ghost White */
+    --foreground-title: #6A5ACD; /* Slate Blue */
+    --foreground-data: #4682B4; /* Steel Blue */
+    --hover-background: #E0FFFF; /* Light Cyan */
+    --color1: #FFB6C1; /* Light Pink */
+    --color2: #FFD700; /* Gold (soft) */
+    --color3: #B0E0E6; /* Powder Blue */
+    --color4: #98FB98; /* Pale Green */
+    --color5: #DDA0DD; /* Plum (light) */
+    --color6: #FAFAD2; /* Light Goldenrod Yellow */
+    --color7: #ADD8E6; /* Light Blue */
+    --color8: #F08080; /* Light Coral */
+    --color9: #E0FFFF; /* Light Cyan */
+    --color10: #F5DEB3; /* Wheat */
+    --color11: #BA55D3; /* Medium Orchid (lighter) */
+    --color12: #AFEEEE; /* Pale Turquoise */
+    --color13: #FFC0CB; /* Pink */
+    --color14: #FFE4E1; /* Misty Rose */
+    --color15: #DA70D6; /* Orchid (lighter) */
+    --color16: #F0FFF0; /* Honeydew */
+    --color17: #FFFACD; /* Lemon Chiffon */
+    --color18: #D8BFD8; /* Thistle */
+    --color19: #BFEFFF; /* Sky Blue (lighter) */
+    --color20: #FFEBCD; /* Blanched Almond */
+}
+
+.color-scheme-green-large {
+    --background: #F0FFF0; /* Honeydew */
+    --foreground-title: #2E8B57; /* Sea Green */
+    --foreground-data: #3CB371; /* Medium Sea Green */
+    --hover-background: #E6FFE6; /* Even Lighter Green */
+    --color-1: #F0FFF0; /* Honeydew (very light) */
+    --color2: #D9F1D9; /* Lighter Honeydew */
+    --color3: #BEE2BE; /* Light Pale Green */
+    --color4: #9DD39D; /* Pale Green */
+    --color5: #7CC47C; /* Light Medium Green */
+    --color6: #5BB55B; /* Medium Green */
+    --color7: #3AA63A; /* Strong Green */
+    --color8: #199719; /* Darker Strong Green */
+    --color9: #0A880A; /* Dark Green */
+    --color10: #007700; /* Very Dark Green */
+    --color11: #006600; /* Even Darker Green */
+    --color12: #005500; /* Deep Green */
+    --color13: #004400; /* Midnight Green */
+    --color14: #003300; /* Forest Deep */
+    --color15: #002200; /* Almost Black Green */
+    --color16: #2E8B57; /* Sea Green */
+    --color17: #3CB371; /* Medium Sea Green */
+    --color18: #66CDAA; /* Medium Aquamarine */
+    --color19: #8FBC8F; /* Dark Sea Green */
+    --color20: #A2CC91; /* Pistachio */
+}
+
+.color-scheme-gemini-large {
+    --background: #F5F5F5; /* White Smoke */
+    --foreground-title: #36454F; /* Charcoal */
+    --foreground-data: #4CAF50; /* Green (for data highlights) */
+    --hover-background: #E8F5E9; /* Light Greenish White */
+    --color1: #1F77B4; /* Steel Blue */
+    --color2: #FF7F0E; /* Orange */
+    --color3: #2CA02C; /* Forest Green */
+    --color4: #D62728; /* Bright Red */
+    --color5: #9467BD; /* Medium Purple */
+    --color6: #8C564B; /* Brown */
+    --color7: #E377C2; /* Hot Pink */
+    --color8: #7F7F7F; /* Gray */
+    --color9: #BCBD22; /* Olive Green */
+    --color10: #17BECF; /* Teal */
+    --color11: #AEC7E8; /* Light Blue */
+    --color12: #FFBB78; /* Light Orange */
+    --color13: #98DF8A; /* Light Green */
+    --color14: #FF9896; /* Light Red */
+    --color15: #C5B0D5; /* Light Purple */
+    --color16: #C49C94; /* Light Brown */
+    --color17: #F7B6D2; /* Light Hot Pink */
+    --color18: #C7C7C7; /* Light Gray */
+    --color19: #DBDB8D; /* Pale Yellow-Green */
+    --color20: #9EDAE5; /* Pale Teal */
+}
+
+.color-scheme-grouped-hues-large {
+    --background: #FDFDFD; /* Near White */
+    --foreground-title: #333333; /* Dark Gray */
+    --foreground-data: #666666; /* Medium Gray */
+    --hover-background: #EEEEEE; /* Light Gray */
+
+    /* Group 1: Green Shades */
+    --color1: #E6F4EA; /* Very Light Green */
+    --color2: #C8E6C9; /* Light Green */
+    --color3: #A5D6A7; /* Medium Light Green */
+    --color4: #81C784; /* Medium Green */
+
+    /* Group 2: Blue Shades */
+    --color5: #E3F2FD; /* Very Light Blue */
+    --color6: #BBDEFB; /* Light Blue */
+    --color7: #90CAF9; /* Medium Light Blue */
+    --color8: #64B5F6; /* Medium Blue */
+
+    /* Group 3: Red Shades */
+    --color9: #FFEBEE; /* Very Light Red */
+    --color10: #FFCDD2; /* Light Red */
+    --color11: #EF9A9A; /* Medium Light Red */
+    --color12: #E57373; /* Medium Red */
+
+    /* Group 4: Yellow/Orange Shades */
+    --color13: #FFFDE7; /* Very Light Yellow */
+    --color14: #FFF9C4; /* Light Yellow */
+    --color15: #FFF59D; /* Medium Light Yellow */
+    --color16: #FFF176; /* Medium Yellow */
+
+    /* Group 5: Repeating Green Shades (or a slightly different variant) */
+    --color17: #C8E6C9; /* Repeat Light Green */
+    --color18: #A5D6A7; /* Repeat Medium Light Green */
+    --color19: #66BB6A; /* Slightly Stronger Green */
+    --color20: #4CAF50; /* Strong Green */
+}
+
+.color-scheme-grouped-hues-xlarge {
+    --background: #FDFDFD; /* Near White */
+    --foreground-title: #333333; /* Dark Gray */
+    --foreground-data: #666666; /* Medium Gray */
+    --hover-background: #EEEEEE; /* Light Gray */
+
+    /* Group 1: Green Shades (7 colors) */
+    --color1: #E8F5E9; /* Lightest Green */
+    --color2: #C8E6C9; /* Very Light Green */
+    --color3: #A5D6A7; /* Light Green */
+    --color4: #81C784; /* Medium Light Green */
+    --color5: #66BB6A; /* Medium Green */
+    --color6: #4CAF50; /* Strong Green */
+    --color7: #388E3C; /* Dark Green */
+
+    /* Group 2: Blue Shades (7 colors) */
+    --color8: #E3F2FD; /* Lightest Blue */
+    --color9: #BBDEFB; /* Very Light Blue */
+    --color10: #90CAF9; /* Light Blue */
+    --color11: #64B5F6; /* Medium Light Blue */
+    --color12: #42A5F5; /* Medium Blue */
+    --color13: #2196F3; /* Strong Blue */
+    --color14: #1976D2; /* Dark Blue */
+
+    /* Group 3: Red Shades (7 colors) */
+    --color15: #FFEBEE; /* Lightest Red */
+    --color16: #FFCDD2; /* Very Light Red */
+    --color17: #EF9A9A; /* Light Red */
+    --color18: #E57373; /* Medium Light Red */
+    --color19: #EF5350; /* Medium Red */
+    --color20: #F44336; /* Strong Red */
+    --color21: #D32F2F; /* Dark Red */
+
+    /* Group 4: Yellow/Orange Shades (7 colors) */
+    --color22: #FFFDE7; /* Lightest Yellow */
+    --color23: #FFF9C4; /* Very Light Yellow */
+    --color24: #FFF59D; /* Light Yellow */
+    --color25: #FFF176; /* Medium Light Yellow */
+    --color26: #FFEE58; /* Medium Yellow */
+    --color27: #FFEB3B; /* Strong Yellow */
+    --color28: #FDD835; /* Dark Yellow/Amber */
+}
+
+.color-scheme-small-blue{
+    --color1: #BBDEFB; /* Light Blue */
+    --color2: #64B5F6; /* Medium Blue */
+    --color3: #42A5F5; /* Strong Blue */
+    --color4: #2196F3; /* Dark Blue */
+}
+
+/* Spectrum - validated categorical scheme for multi-series charts on a dark ground.
+   Stepped in OKLCH and checked with the dataviz palette validator (dark surface):
+   lightness band, chroma floor, CVD separation (worst adjacent dE 13.5), normal-vision
+   floor (20.2) and contrast vs surface all pass. Ordered so that ADJACENT slots are the
+   most separated - assign by a series' fixed position, never by its rank. */
+.color-scheme-spectrum {
+    --background: #0B0B0B;
+    --foreground-title: whitesmoke;
+    --foreground-data: palegoldenrod;
+    --hover-background: rgba(255, 255, 255, 0.08);
+    --color1: #00A071;
+    --color2: #426BCE;
+    --color3: #33903C;
+    --color4: #8A5FC9;
+    --color5: #00A8A9;
+    --color6: #C06325;
+    --color7: #C76AC0;
+    --color8: #C38700;
+    --color9: #0098C4;
+    --color10: #DA534F;
+}

@@ -1,0 +1,182 @@
+/* DateSelector with Liquid Glass Design */
+.date-selector {
+    background: rgb(var(--white-rgb) / 0.1);
+    border-radius: 20px;
+    border: 1px solid rgb(var(--white-rgb) / 0.2);
+    box-shadow: 0 8px 32px rgb(var(--black-rgb) / 0.1), inset 0 1px 0 rgb(var(--white-rgb) / 0.2);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    user-select: none;
+    flex-shrink: 0;
+    padding: 10px;
+}
+
+/* Calendar Header */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    height: 40px;
+}
+
+.month-year {
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(var(--white-rgb) / 0.9);
+    text-shadow: 0 2px 4px rgb(var(--black-rgb) / 0.3);
+    letter-spacing: 0.5px;
+    width: 180px;
+    text-align: center;
+}
+
+.nav-button {
+    background: rgb(var(--white-rgb) / 0.15);
+    border: 1px solid rgb(var(--white-rgb) / 0.3);
+    border-radius: 12px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: rgb(var(--white-rgb) / 0.8);
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+}
+
+.nav-button:hover {
+    background: rgb(var(--white-rgb) / 0.25);
+    color: rgb(var(--white-rgb));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgb(var(--black-rgb) / 0.15);
+}
+
+.nav-button:active {
+    transform: translateY(0);
+}
+
+/* Weekdays Header */
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 40px);
+    gap: 4px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.weekday {
+    width: 40px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgb(var(--white-rgb) / 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Calendar Grid */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 40px);
+    grid-template-rows: repeat(6, 40px);
+    gap: 4px;
+    justify-content: center;
+}
+
+.calendar-day {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(var(--white-rgb) / 0.7);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.calendar-day:not(.empty):hover {
+    background: rgb(var(--white-rgb) / 0.15);
+    color: rgb(var(--white-rgb) / 0.9);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgb(var(--black-rgb) / 0.1);
+}
+
+.calendar-day.empty {
+    cursor: default;
+}
+
+/* Today styling */
+.calendar-day.today {
+    background: rgb(var(--white-rgb) / 0.2);
+    color: rgb(var(--white-rgb));
+    border: 2px solid rgb(var(--white-rgb) / 0.4);
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgb(var(--black-rgb) / 0.15), inset 0 1px 0 rgb(var(--white-rgb) / 0.3);
+}
+
+.calendar-day.today:hover {
+    background: rgb(var(--white-rgb) / 0.25);
+    border-color: rgb(var(--white-rgb) / 0.5);
+}
+
+/* Selected date styling */
+.calendar-day.selected {
+    background: linear-gradient(135deg, rgb(var(--white-rgb) / 0.3) 0%, rgb(var(--white-rgb) / 0.2) 100%);
+    color: rgb(var(--white-rgb));
+    border: 2px solid rgb(var(--white-rgb) / 0.6);
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgb(var(--black-rgb) / 0.2), inset 0 1px 0 rgb(var(--white-rgb) / 0.4);
+}
+
+.calendar-day.selected:hover {
+    background: linear-gradient(135deg, rgb(var(--white-rgb) / 0.35) 0%, rgb(var(--white-rgb) / 0.25) 100%);
+}
+
+/* Selected + Today combination */
+.calendar-day.selected.today {
+    background: linear-gradient(135deg, rgb(var(--white-rgb) / 0.4) 0%, rgb(var(--white-rgb) / 0.3) 100%);
+    border: 2px solid rgb(var(--white-rgb) / 0.7);
+    box-shadow: 0 8px 24px rgb(var(--black-rgb) / 0.25), inset 0 1px 0 rgb(var(--white-rgb) / 0.5), 0 0 0 4px rgb(var(--white-rgb) / 0.1);
+}
+
+/* Focus styles for accessibility */
+.calendar-day:focus-visible {
+    outline: 2px solid rgb(var(--white-rgb) / 0.5);
+    outline-offset: 2px;
+}
+
+.nav-button:focus-visible {
+    outline: 2px solid rgb(var(--white-rgb) / 0.5);
+    outline-offset: 2px;
+}
+
+/* Animation for initial load */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.date-selector {
+    animation: fadeInScale 0.4s ease-out;
+}
+
+/* Fixed size - no responsive adjustments */

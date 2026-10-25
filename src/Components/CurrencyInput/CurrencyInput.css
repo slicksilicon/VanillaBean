@@ -1,0 +1,234 @@
+/* CurrencyInput with Liquid Glass Design */
+.currency-input-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    position: relative;    
+    box-sizing: border-box;     
+}
+
+.currency-input-layout-horizontal {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Description Styling (always top by default) */
+.currency-input-description {    
+    color: rgb(var(--white-rgb) / 0.8);
+    font-weight: 500;        
+    text-shadow: 0 1px 2px rgb(var(--black-rgb) / 0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.currency-input-description-left {
+    min-width: 120px;
+    max-width: 160px;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.3;
+    font-size: 13px;
+    flex-shrink: 0;
+    text-align: right;
+    margin-bottom: 0;
+}
+
+
+.currency-input-main-row {
+    display: flex;
+    align-items: center;
+    width: 100%;    
+    flex: 1;
+    gap: 8px;
+}
+
+/* Currency Symbol Styling */
+.currency-symbol {
+    display: flex;
+    flex-shrink: 0;
+    min-height: 41px;
+    width : 50px;       
+    align-items: center;
+    justify-content: center;        
+    color : rgb(var(--danger-light-rgb) / 0.7);
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgb(var(--black-rgb) / 0.3);    
+    background: rgb(var(--white-rgb) / 0.3);
+    border: 1px solid rgb(var(--white-rgb) / 0.2);
+    border-radius: 12px 0 0 12px;
+    box-shadow: 
+        0 4px 16px rgb(var(--black-rgb) / 0.1),
+        inset 0 1px 0 rgb(var(--white-rgb) / 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    border-right: none;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+/* Main Currency Input Wrapper */
+.currency-input-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    min-width: 120px;    
+    overflow: hidden;
+    box-sizing: border-box;    
+}
+
+/* Currency Input Field */
+.currency-input-field {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 41px;
+    padding: 8px 12px;
+    background: rgb(var(--white-rgb) / 0.1);
+    border: 1px solid rgb(var(--white-rgb) / 0.2);
+    border-radius: 0 12px 12px 0;
+    border-left: none;    
+    color : rgb(var(--danger-light-rgb) / 0.9);
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    outline: none;
+    box-shadow: 
+        0 4px 16px rgb(var(--black-rgb) / 0.1),
+        inset 0 1px 0 rgb(var(--white-rgb) / 0.2);
+    font-weight: 500;
+    box-sizing: border-box;
+    font-family: inherit;
+    text-align: right;
+}
+
+.currency-input-field::placeholder {
+    color: rgb(var(--white-rgb) / 0.5);
+    font-weight: 400;
+}
+
+.currency-input-main-row:hover .currency-input-field {
+    background: rgb(var(--white-rgb) / 0.15);
+    border-color: rgb(var(--white-rgb) / 0.3);
+    /* transform: translateY(-1px); */
+    box-shadow: 
+        0 6px 20px rgb(var(--black-rgb) / 0.15),
+        inset 0 1px 0 rgb(var(--white-rgb) / 0.3);
+}
+
+/* Focus States */
+.currency-input-wrapper.focused .currency-input-field {
+    background: rgb(var(--white-rgb) / 0.2);
+    border-color: rgb(var(--white-rgb) / 0.4);
+    box-shadow: 
+        0 4px 16px rgb(var(--black-rgb) / 0.2),
+        inset 0 1px 0 rgb(var(--white-rgb) / 0.3);
+}
+
+/* .currency-input-wrapper.focused + .currency-symbol,
+.currency-input-main-row:has(.currency-input-wrapper.focused) .currency-symbol {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+} */
+
+.currency-input-field:focus-visible {
+    outline: 2px solid rgb(var(--white-rgb) / 0.5);
+    outline-offset: 2px;
+}
+
+/* Disabled State */
+.currency-input-wrapper.disabled .currency-input-field {
+    background: rgb(var(--white-rgb) / 0.05);
+    border-color: rgb(var(--white-rgb) / 0.1);
+    color: rgb(var(--white-rgb) / 0.4);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.currency-input-wrapper.disabled + .currency-symbol,
+.currency-input-main-row:has(.currency-input-wrapper.disabled) .currency-symbol {
+    background: rgb(var(--white-rgb) / 0.05);
+    border-color: rgb(var(--white-rgb) / 0.1);
+    color: rgb(var(--white-rgb) / 0.4);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.currency-input-wrapper.disabled .currency-input-field:hover,
+.currency-input-main-row:has(.currency-input-wrapper.disabled):hover .currency-symbol,
+.currency-input-main-row:has(.currency-input-wrapper.disabled):hover .currency-input-field {
+    background: rgb(var(--white-rgb) / 0.05);
+    border-color: rgb(var(--white-rgb) / 0.1);
+    transform: none;
+    box-shadow: 
+        0 4px 16px rgb(var(--black-rgb) / 0.1),
+        inset 0 1px 0 rgb(var(--white-rgb) / 0.2);
+}
+
+.currency-input-wrapper.disabled .currency-input-field::placeholder {
+    color: rgb(var(--white-rgb) / 0.3);
+}
+
+/* Selection styling */
+.currency-input-field::selection {
+    background: rgb(var(--white-rgb) / 0.3);
+    color: rgb(var(--black-rgb) / 0.8);
+}
+
+/* Animation for initial load */
+@keyframes currencyInputFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.currency-input-container {
+    animation: currencyInputFadeIn 0.4s ease-out;
+}
+
+/* Responsive font sizing adjustments */
+@container (max-width: 150px) {
+    .currency-input-field {
+        font-size: 13px !important;
+    }
+    
+    .currency-symbol {
+        font-size: 13px !important;
+    }
+    
+    .currency-input-description {
+        font-size: 12px !important;
+    }
+}
+
+@container (max-width: 100px) {
+    .currency-input-field {
+        font-size: 11px !important;
+    }
+    
+    .currency-symbol {
+        font-size: 11px !important;
+        min-width: 40px;
+    }
+    
+    .currency-input-description {
+        font-size: 10px !important;
+    }
+    
+    .currency-input-field,
+    .currency-symbol {
+        padding: 6px 8px;
+        min-height: 30px;
+    }
+}

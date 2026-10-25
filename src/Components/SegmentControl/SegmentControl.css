@@ -1,0 +1,310 @@
+/* Segment Control with Liquid Glass Design */
+.segment-control {
+    /* Containing block for .segment-indicator, whose left/width are measured
+       relative to this element in JS. Without it the indicator escapes to the
+       nearest positioned ancestor (or the viewport) and paints over the page. */
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+    margin-top: 5px;
+    margin-bottom : 5px;
+    align-items: center;
+    border-radius: 16px;
+    padding: 6px;
+    transition: all 0.3s ease;
+    z-index: 1000;  
+    box-sizing: border-box;
+}
+
+/* Primary Color Scheme (default - grayscale) */
+.segment-control-primary {
+    background: rgb(var(--white-rgb) / 0.1);
+    border: 1px solid rgb(var(--white-rgb) / 0.2);
+    /* box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2); */
+}
+
+.segment-control-primary .segment-indicator {
+    background: linear-gradient(135deg, 
+        rgb(var(--white-rgb) / 0.25) 0%,
+        rgb(var(--white-rgb) / 0.1) 100%);
+    border: 1px solid rgb(var(--white-rgb) / 0.15);
+}
+
+/* Info Color Scheme (blue) */
+.segment-control-info {
+    background: linear-gradient(135deg, 
+        rgb(var(--gray-500-rgb) / 0.6) 0%,
+        rgb(var(--info-rgb) / 0.5) 100%);
+    border: 1px solid rgb(var(--sky-rgb) / 0.3);
+    box-shadow: 
+        0 8px 32px rgb(var(--sky-rgb) / 0.15),
+        inset 0 1px 0 rgb(var(--sky-light-rgb) / 0.3);
+}
+
+.segment-control-info .segment-indicator {
+    background: linear-gradient(135deg, 
+        rgb(var(--sky-light-rgb) / 0.4) 0%,
+        rgb(var(--sky-rgb) / 0.3) 100%);
+    border: 1px solid rgb(var(--info-rgb) / 0.4);
+}
+
+/* Success Color Scheme (green) */
+.segment-control-success {
+    background: linear-gradient(135deg, 
+        rgb(var(--gray-300-rgb) / 0.6) 0%,
+        rgb(var(--success-light-rgb) / 0.5) 100%);
+    border: 1px solid rgb(var(--success-strong-rgb) / 0.3);
+    box-shadow: 
+        0 8px 32px rgb(var(--success-strong-rgb) / 0.15),
+        inset 0 1px 0 rgb(var(--success-light-rgb) / 0.3);
+}
+
+.segment-control-success .segment-indicator {
+    background: linear-gradient(135deg, 
+        rgb(var(--success-light-rgb) / 0.4) 0%,
+        rgb(var(--success-strong-rgb) / 0.3) 100%);
+    border: 1px solid rgb(var(--success-rgb) / 0.4);
+}
+
+/* Warning Color Scheme (orange/yellow) */
+.segment-control-warning {
+    background: linear-gradient(135deg, 
+        rgb(var(--gold-cream-rgb) / 0.6) 0%,
+        rgb(var(--warning-tint-rgb) / 0.5) 100%);
+    border: 1px solid rgb(var(--warning-rgb) / 0.3);
+    box-shadow: 
+        0 8px 32px rgb(var(--warning-rgb) / 0.15),
+        inset 0 1px 0 rgb(var(--warning-light-rgb) / 0.3);
+}
+
+.segment-control-warning .segment-indicator {
+    background: linear-gradient(135deg, 
+        rgb(var(--warning-light-rgb) / 0.4) 0%,
+        rgb(var(--warning-rgb) / 0.3) 100%);
+    border: 1px solid rgb(var(--warning-light-rgb) / 0.4);
+}
+
+/* Danger Color Scheme (red) */
+.segment-control-danger {
+    background: linear-gradient(135deg, 
+        rgb(var(--danger-tint-rgb) / 0.6) 0%,
+        rgb(var(--danger-tint-rgb) / 0.5) 100%);
+    border: 1px solid rgb(var(--danger-rgb) / 0.3);
+    box-shadow: 
+        0 8px 32px rgb(var(--danger-rgb) / 0.15),
+        inset 0 1px 0 rgb(var(--danger-rgb) / 0.3);
+}
+
+.segment-control-danger .segment-indicator {
+    background: linear-gradient(135deg, 
+        rgb(var(--danger-rgb) / 0.4) 0%,
+        rgb(var(--danger-rgb) / 0.3) 100%);
+    border: 1px solid rgb(var(--danger-light-rgb) / 0.4);
+}
+
+.segment-control-primary:hover {
+    box-shadow: 
+        0 12px 40px rgb(var(--black-rgb) / 0.15),
+        inset 0 1px 0 rgb(var(--white-rgb) / 0.3);
+}
+
+.segment-control-info:hover {
+    box-shadow: 
+        0 12px 40px rgb(var(--sky-rgb) / 0.2),
+        inset 0 1px 0 rgb(var(--sky-light-rgb) / 0.4);
+}
+
+.segment-control-success:hover {
+    box-shadow: 
+        0 12px 40px rgb(var(--success-strong-rgb) / 0.2),
+        inset 0 1px 0 rgb(var(--success-light-rgb) / 0.4);
+}
+
+.segment-control-warning:hover {
+    box-shadow: 
+        0 12px 40px rgb(var(--warning-rgb) / 0.2),
+        inset 0 1px 0 rgb(var(--warning-light-rgb) / 0.4);
+}
+
+.segment-control-danger:hover {
+    box-shadow: 
+        0 12px 40px rgb(var(--danger-rgb) / 0.2),
+        inset 0 1px 0 rgb(var(--danger-rgb) / 0.4);
+}
+
+.segment-item {
+    position: relative;
+    height: 40px;
+    z-index: 2;
+    padding: 12px 24px;
+    margin: 0 4px;
+    border: none;
+    background: transparent;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(var(--white-rgb) / 0.7);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    white-space: nowrap;
+    outline: none;
+    user-select: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow: hidden;
+}
+
+.segment-item:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.segment-item:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.segment-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(var(--white-rgb) / 0.1);
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: -1;
+}
+
+.segment-item:hover::before {
+  opacity: 1;
+}
+
+.segment-item:hover {
+  color: rgb(var(--white-rgb) / 0.9);
+  transform: translateY(-1px);
+}
+
+.segment-item.active {
+  color: rgb(var(--white-rgb));
+  text-shadow: 0 0 10px rgb(var(--white-rgb) / 0.3);
+}
+
+.segment-item.active::before {
+  background: rgb(var(--white-rgb) / 0.15);
+  opacity: 1;
+}
+
+.segment-item:active {
+  transform: translateY(0);
+}
+
+.segment-item:active::before {
+  background: rgb(var(--white-rgb) / 0.2);
+  opacity: 1;
+  transition: opacity 0.1s ease;
+}
+
+.segment-indicator {
+    position: absolute;
+    height: 40px;
+    top: 6px;
+    border-radius: 12px;
+    box-shadow: 
+        0 4px 16px rgb(var(--black-rgb) / 0.1),
+        inset 0 1px 0 rgb(var(--white-rgb) / 0.4);
+    transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+    z-index: 1;
+}
+
+/* Dark theme variant */
+.segment-control.dark {
+  background: rgb(var(--black-rgb) / 0.2);
+  border: 1px solid rgb(var(--white-rgb) / 0.1);
+}
+
+.segment-control.dark .segment-item {
+  color: rgb(var(--black-rgb) / 0.7);
+}
+
+.segment-control.dark .segment-item:hover {
+  color: rgb(var(--black-rgb) / 0.9);
+}
+
+.segment-control.dark .segment-item.active {
+  color: rgb(var(--black-rgb));
+  text-shadow: 0 0 10px rgb(var(--black-rgb) / 0.3);
+}
+
+.segment-control.dark .segment-indicator {
+  background: linear-gradient(135deg, 
+    rgb(var(--white-rgb) / 0.8) 0%,
+    rgb(var(--white-rgb) / 0.6) 100%);
+  border: 1px solid rgb(var(--white-rgb) / 0.5);
+}
+
+/* Size variants */
+.segment-control.small {
+  padding: 2px;
+  border-radius: 12px;
+}
+
+.segment-control.small .segment-item {
+  padding: 8px 16px;
+  font-size: 12px;
+  border-radius: 10px;
+}
+
+.segment-control.small .segment-indicator {
+  border-radius: 10px;
+}
+
+.segment-control.large {
+  padding: 6px;
+  border-radius: 20px;
+}
+
+.segment-control.large .segment-item {
+  padding: 16px 24px;
+  font-size: 16px;
+  border-radius: 14px;
+}
+
+.segment-control.large .segment-indicator {
+  border-radius: 14px;
+}
+
+/* Animation for initial load */
+@keyframes fadeInGlass {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.segment-control {
+  animation: fadeInGlass 0.5s ease-out;
+}
+
+/* Responsive font size for smaller widths */
+@media (max-width: 650px) {
+  .segment-item {
+    font-size: 10px;
+  }
+  
+  .segment-control.small .segment-item {
+    font-size: 8px;
+  }
+  
+  .segment-control.large .segment-item {
+    font-size: 12px;
+  }
+}
+

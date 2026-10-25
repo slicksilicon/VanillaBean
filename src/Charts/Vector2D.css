@@ -1,0 +1,170 @@
+/* ================================================
+   Vector2D – 2D Embedding Scatter Plot
+   ================================================ */
+
+/* ── Container ── */
+.vector2d-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    user-select: none;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ── SVG Canvas ── */
+.vector2d-svg {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+}
+
+.vector2d-svg:active {
+    cursor: grabbing;
+}
+
+/* ── Point Count Badge ── */
+.vector2d-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 4px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    background: rgba(59, 130, 246, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ── Legend ── */
+.vector2d-legend {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 6px 12px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.vector2d-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.vector2d-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* ── Tooltip ── */
+.vector2d-tooltip {
+    position: absolute;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    z-index: 10;
+    white-space: nowrap;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.9);
+    transform: translate(-50%, -100%);
+    margin-top: -12px;
+}
+
+.vector2d-tooltip-label {
+    font-weight: 600;
+    color: goldenrod;
+    margin-bottom: 2px;
+}
+
+.vector2d-tooltip-row {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 11px;
+}
+
+/* ── Zoom Controls ── */
+.vector2d-controls {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 2;
+}
+
+.vector2d-controls button {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    padding: 0;
+    line-height: 1;
+}
+
+.vector2d-controls button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.vector2d-deselect-btn {
+    color: rgba(255, 100, 100, 0.9) !important;
+    border-color: rgba(255, 100, 100, 0.3) !important;
+}
+
+.vector2d-deselect-btn:hover {
+    background: rgba(255, 100, 100, 0.2) !important;
+}
+
+/* ── Empty State ── */
+.vector2d-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
+}

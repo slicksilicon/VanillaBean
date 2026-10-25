@@ -1,0 +1,320 @@
+/* Liquid Glass Stepper Selector Styles */
+
+/* Container Layouts */
+.stepper-container-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+}
+
+.stepper-container-horizontal {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+}
+
+.stepper-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: rgb(var(--white-rgb) / 0.9);
+    text-shadow: 0 1px 2px rgb(var(--black-rgb) / 0.3);
+    white-space: nowrap;
+}
+
+/* Main Stepper Component */
+.stepper-selector {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    box-shadow: 0 8px 32px rgb(var(--black-rgb) / 0.1);
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    min-width: 160px;
+    padding: 4px;
+}
+
+.stepper-selector:hover {
+    box-shadow: 0 12px 40px rgb(var(--black-rgb) / 0.15);
+}
+
+/* Stepper Button */
+.stepper-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: rgb(var(--white-rgb) / 0.1);
+    border: 1px solid rgb(var(--white-rgb) / 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    outline: none;
+    flex-shrink: 0;
+}
+
+.stepper-button:hover:not(.stepper-button-disabled) {
+    background: rgb(var(--white-rgb) / 0.2);
+    border-color: rgb(var(--white-rgb) / 0.3);
+    transform: scale(1.05);
+}
+
+.stepper-button:active:not(.stepper-button-disabled) {
+    transform: scale(0.95);
+    transition: all 0.1s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.stepper-button:focus-visible {
+    outline: 2px solid rgb(var(--white-rgb) / 0.5);
+    outline-offset: 2px;
+}
+
+.stepper-button-disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.stepper-icon {
+    color: currentColor;
+    transition: all 0.2s ease;
+}
+
+.stepper-symbol {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    color: currentColor;
+    user-select: none;
+}
+
+/* Value Display */
+.stepper-value {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: currentColor;
+    text-shadow: 0 1px 2px rgb(var(--black-rgb) / 0.2);
+    padding: 0 8px;
+    width : calc(100% - 64px);
+    text-align: center;
+    cursor: text;
+}
+
+.stepper-value-input {
+    flex: 1;
+    width: calc(100% - 64px);
+    background: rgb(var(--black-rgb) / 0.25);
+    border: 1px solid rgb(var(--white-rgb) / 0.3);
+    border-radius: 6px;
+    color: currentColor;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    padding: 2px 4px;
+    outline: none;
+}
+
+.stepper-value-input:focus {
+    border-color: rgb(var(--white-rgb) / 0.5);
+    background: rgb(var(--black-rgb) / 0.35);
+}
+
+/* Variants */
+
+/* Primary Variant */
+.stepper-primary {
+    background: rgb(var(--white-rgb) / 0.2);
+    border-color: rgb(var(--white-rgb) / 0.3);
+    color: rgb(var(--white-rgb));
+}
+
+.stepper-primary:hover {
+    background: rgb(var(--white-rgb) / 0.25);
+    border-color: rgb(var(--white-rgb) / 0.4);
+}
+
+/* Secondary Variant */
+.stepper-secondary {
+    background: rgb(var(--white-rgb) / 0.1);
+    border-color: rgb(var(--white-rgb) / 0.2);
+    color: rgb(var(--white-rgb) / 0.9);
+}
+
+.stepper-secondary:hover {
+    background: rgb(var(--white-rgb) / 0.15);
+    border-color: rgb(var(--white-rgb) / 0.3);
+}
+
+/* Success Variant */
+.stepper-success {
+    background: rgb(var(--success-rgb) / 0.2);
+    border-color: rgb(var(--success-rgb) / 0.4);
+    color: rgb(var(--success-light-rgb));
+}
+
+.stepper-success:hover {
+    background: rgb(var(--success-rgb) / 0.25);
+    border-color: rgb(var(--success-rgb) / 0.5);
+}
+
+/* Info Variant */
+.stepper-info {
+    background: rgb(var(--info-rgb) / 0.2);
+    border-color: rgb(var(--info-rgb) / 0.4);
+    color: rgb(var(--info-light-rgb));
+}
+
+.stepper-info:hover {
+    background: rgb(var(--info-rgb) / 0.25);
+    border-color: rgb(var(--info-rgb) / 0.5);
+}
+
+/* Warning Variant */
+.stepper-warning {
+    background: rgb(var(--warning-rgb) / 0.2);
+    border-color: rgb(var(--warning-rgb) / 0.4);
+    color: rgb(var(--warning-light-rgb));
+}
+
+.stepper-warning:hover {
+    background: rgb(var(--warning-rgb) / 0.25);
+    border-color: rgb(var(--warning-rgb) / 0.5);
+}
+
+/* Danger Variant */
+.stepper-danger {
+    background: rgb(var(--danger-rgb) / 0.2);
+    border-color: rgb(var(--danger-rgb) / 0.4);
+    color: rgb(var(--danger-light-rgb));
+}
+
+.stepper-danger:hover {
+    background: rgb(var(--danger-rgb) / 0.25);
+    border-color: rgb(var(--danger-rgb) / 0.5);
+}
+
+/* Gilded Noir Variant */
+/* Primary: #DAA520 (Goldenrod), Accent: #005F6B (Deep Teal), Buffer: #2C2C2C, Text: #FAEBD7, Amber: #FFBF00 */
+.stepper-gilded-noir {
+    background: rgb(var(--gold-rgb) / 0.85);
+    border-color: rgb(var(--gold-bright-rgb));
+    color: rgb(var(--gold-cream-rgb));
+}
+
+.stepper-gilded-noir:hover {
+    background: rgb(var(--gold-rgb) / 0.9);
+    border-color: rgb(var(--gold-bright-rgb));
+    color: rgb(var(--white-rgb));
+}
+
+.stepper-gilded-noir .stepper-button {
+    background: rgb(var(--warning-rgb) / 0.3);
+    border-color: rgb(var(--gold-bright-rgb) / 0.4);
+}
+
+.stepper-gilded-noir .stepper-button:hover:not(.stepper-button-disabled) {
+    background: rgb(var(--warning-rgb) / 0.5);
+    border-color: rgb(var(--gold-bright-rgb) / 0.6);
+}
+
+.stepper-gilded-noir .stepper-button:active:not(.stepper-button-disabled) {
+    background: rgb(var(--gold-rgb) / 0.6);
+}
+
+/* Disabled State */
+.stepper-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .stepper-selector {
+        min-width: 140px;
+    }
+    
+    .stepper-button {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .stepper-value {
+        font-size: 13px;
+        min-width: 50px;
+    }
+    
+    .stepper-title {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stepper-container-horizontal {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+    }
+    
+    .stepper-selector {
+        width: 100%;
+        min-width: unset;
+    }
+}
+
+/* Focus and Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .stepper-selector,
+    .stepper-button,
+    .stepper-icon {
+        transition: none;
+    }
+    
+    .stepper-button:hover:not(.stepper-button-disabled) {
+        transform: none;
+    }
+    
+    .stepper-button:active:not(.stepper-button-disabled) {
+        transform: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .stepper-selector {
+        border-width: 2px;
+    }
+    
+    .stepper-button {
+        border-width: 2px;
+    }
+    
+    .stepper-primary {
+        background: rgb(var(--white-rgb) / 0.4);
+        border-color: rgb(var(--white-rgb) / 0.8);
+    }
+    
+    .stepper-secondary {
+        background: rgb(var(--white-rgb) / 0.2);
+        border-color: rgb(var(--white-rgb) / 0.6);
+    }
+
+    .stepper-gilded-noir {
+        background: rgb(var(--gold-rgb));
+        border-color: rgb(var(--gold-bright-rgb));
+    }
+}

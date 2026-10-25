@@ -1,0 +1,98 @@
+/* Container: Remove scrollbars, allow full height */
+.printable-excel-table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 2px solid rgb(var(--black-rgb)); /* Sharper border for print */
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: rgb(var(--black-rgb));
+    background: rgb(var(--white-rgb));
+}
+
+/* We apply the Grid definition to both header and body.
+   Note: The 'gridTemplateColumns' style is applied inline in the TSX.
+*/
+.printable-header-row,
+.printable-body {
+    display: grid;
+    width: 100%;
+}
+
+/* Header Styling */
+.printable-header-cell {
+    padding: 6px 4px;
+    font-weight: 700;
+    font-size: 11pt; /* Use pt for print sizing */
+    text-align: center;
+    border-bottom: 2px solid rgb(var(--black-rgb));
+    border-right: 1px solid rgb(var(--gray-300-rgb));
+    background: rgb(var(--gold-bright-rgb)); /* Keep color, but printers might grayscale it */
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    white-space: normal; /* Allow headers to wrap on paper if needed */
+}
+
+/* Remove right border on the last header cell to fit container */
+.printable-header-cell:last-child {
+    border-right: none;
+}
+
+/* Data Cell Styling */
+.printable-cell {
+    padding: 4px 8px;
+    font-size: 10pt;
+    border-bottom: 1px solid rgb(var(--gray-300-rgb));
+    border-right: 1px solid rgb(var(--gray-300-rgb));
+    display: flex;
+    align-items: center;
+    min-height: 24px;
+    
+    /* Ensure the cell content breaks nicely */
+    word-wrap: break-word; 
+}
+
+/* Row Striping (High Contrast for Print) */
+.printable-row-even {
+    background-color: rgb(var(--white-rgb));
+}
+.printable-row-odd {
+    background-color: rgb(var(--gray-100-rgb)); /* Very light grey for safe printing */
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+}
+
+/* Packed Row (Greyed out) */
+.excel-table-row-packed {
+    background: rgb(var(--gray-200-rgb)) !important;
+    color: rgb(var(--gray-600-rgb)) !important;
+    font-style: italic;
+}
+
+/* Major Column Border */
+.printable-border-major {
+    border-right: 2px solid rgb(var(--black-rgb)) !important;
+}
+
+/* Divider Row */
+.printable-divider {
+    grid-column: 1 / -1; /* Span all columns */
+    background: rgb(var(--info-tint-rgb));
+    color: rgb(var(--black-rgb));
+    font-weight: 800;
+    font-size: 10pt;
+    padding: 4px 12px;
+    border-top: 2px solid rgb(var(--black-rgb));
+    border-bottom: 2px solid rgb(var(--black-rgb));
+    text-align: center;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+}
+
+/* Page Break Protection 
+   (Relies on the global .no-break class from previous steps)
+*/
+.no-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+}

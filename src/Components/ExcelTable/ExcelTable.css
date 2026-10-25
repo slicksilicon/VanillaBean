@@ -1,0 +1,353 @@
+/* ============================================================================
+ * ExcelTable — Spreadsheet-style table component
+ * ============================================================================ */
+
+/* Wrapper: fills parent, flex column layout */
+.excel-table-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    border: 3px solid rgb(var(--black-rgb) / 0.75);
+    box-sizing: border-box;
+}
+
+/* Scrollable container for header + body */
+.excel-table-scroll-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Header Row — sticky at top, grid layout */
+.excel-table-header {
+    display: grid;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    border-bottom: 2px solid rgb(var(--black-rgb) / 0.5);
+    box-sizing: border-box;
+}
+
+/* Body Grid — the data rows */
+.excel-table-body {
+    display: grid;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ============================================================================
+ * Header Row
+ * ============================================================================ */
+
+.excel-table-header-cell {
+    padding: 8px 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid rgb(var(--black-rgb) / 0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+}
+
+/* Default yellow header (like Excel) — override with headerClassName prop */
+.excel-table-header-default {
+    background: rgb(var(--gold-bright-rgb));
+    color: rgb(var(--gray-900-rgb));
+}
+
+/* Delete column header — invisible, matches border */
+.excel-table-delete-header {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(var(--black-rgb) / 0.3);
+}
+
+/* ============================================================================
+ * Data Cells
+ * ============================================================================ */
+
+.excel-table-cell {
+    padding: 6px 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgb(var(--gray-900-rgb));
+    border: 1px solid rgb(var(--black-rgb) / 0.15);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background 0.15s ease;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+}
+
+/* Alternating row colors */
+.excel-table-row-even {
+    background: rgb(var(--white-rgb));
+}
+
+.excel-table-row-odd {
+    background: rgb(var(--gray-50-rgb));
+}
+
+/* Editable cell hover */
+.excel-table-cell-editable {
+    cursor: pointer;
+}
+
+.excel-table-cell-editable:hover {
+    background: rgb(var(--gray-100-rgb));
+    outline: 1px solid rgb(var(--info-rgb) / 0.4);
+    outline-offset: -1px;
+}
+
+.excel-table-cell-editable:focus-visible {
+    outline: 2px solid rgb(var(--info-rgb) / 0.6);
+    outline-offset: -2px;
+    background: rgb(var(--gray-100-rgb));
+}
+
+/* Major column — thicker right border */
+.excel-table-cell-major {
+    border-right-width: 2px;
+    border-right-color: rgb(var(--black-rgb) / 0.4);
+}
+
+.excel-table-header-cell.excel-table-cell-major {
+    border-right-width: 2px;
+    border-right-color: rgb(var(--black-rgb) / 0.4);
+}
+
+/* ============================================================================
+ * Divider Row
+ * ============================================================================ */
+
+.excel-table-divider {
+    padding: 6px 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    text-align: center;
+    color: rgb(var(--gray-700-rgb));
+    background: rgb(var(--info-tint-rgb));
+    border: 1px solid rgb(var(--black-rgb) / 0.15);
+    border-left: none;
+    border-right: none;
+    user-select: none;
+}
+
+/* ============================================================================
+ * Delete Column
+ * ============================================================================ */
+
+.excel-table-delete-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-bottom: 1px solid rgb(var(--black-rgb) / 0.1);
+    min-height: 32px;
+}
+
+.excel-table-delete-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: 1px solid transparent;    
+    color: rgb(var(--gray-400-rgb));    
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.excel-table-delete-btn:hover {
+    background: rgb(var(--danger-rgb) / 0.1);
+    border-color: rgb(var(--danger-rgb) / 0.3);
+    color: rgb(var(--danger-rgb));
+}
+
+.excel-table-delete-btn:active {
+    background: rgb(var(--danger-rgb) / 0.2);
+    transform: scale(0.9);
+}
+
+/* ============================================================================
+ * Insert Row
+ * ============================================================================ */
+
+.excel-table-insert-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 0;
+    border-top: 1px solid rgb(var(--black-rgb) / 0.1);
+    background: rgb(var(--gray-50-rgb));
+}
+
+.excel-table-insert-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 16px;
+    background: transparent;
+    border: 1px dashed rgb(var(--black-rgb) / 0.2);
+    border-radius: 4px;
+    color: rgb(var(--gray-600-rgb));
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.excel-table-insert-btn:hover {
+    background: rgb(var(--success-rgb) / 0.08);
+    border-color: rgb(var(--success-rgb) / 0.4);
+    color: rgb(var(--success-rgb));
+}
+
+.excel-table-insert-btn:active {
+    background: rgb(var(--success-rgb) / 0.15);
+}
+
+/* ============================================================================
+ * Filler — fills empty space below the table rows
+ * ============================================================================ */
+
+.excel-table-filler {
+    flex: 1;
+    background: rgb(var(--gray-100-rgb));
+    min-height: 0;
+}
+
+/* ============================================================================
+ * Responsive
+ * ============================================================================ */
+
+@media (max-width: 768px) {
+    .excel-table-header-cell {
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+
+    .excel-table-cell {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    .excel-table-divider {
+        padding: 4px 12px;
+        font-size: 12px;
+    }
+}
+
+/* ============================================================================
+ * Inline Editors
+ * ============================================================================ */
+
+/* Stepper cell — zero padding so stepper fills the cell */
+.excel-table-cell-stepper {
+    padding: 0 !important;
+    overflow: visible;
+}
+
+.excel-table-cell-stepper .stepper-selector {
+    min-width: unset;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+}
+
+.excel-table-cell-stepper .stepper-button {
+    border-radius: 0;
+}
+
+/* Inline text input — seamless with the cell */
+.excel-table-inline-input {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: 2px solid rgb(var(--info-rgb) / 0.5);
+    outline-offset: -2px;
+    background: rgb(var(--gray-100-rgb));
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgb(var(--gray-900-rgb));
+    box-sizing: border-box;
+}
+
+.excel-table-inline-input:focus {
+    outline: 2px solid rgb(var(--info-rgb) / 0.7);
+    background: rgb(var(--white-rgb));
+}
+
+/* ============================================================================
+ * Accessibility
+ * ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .excel-table-cell,
+    .excel-table-delete-btn,
+    .excel-table-insert-btn {
+        transition: none;
+    }
+
+    .excel-table-delete-btn:active {
+        transform: none;
+    }
+}
+
+@media (prefers-contrast: high) {
+    .excel-table {
+        border-width: 4px;
+    }
+
+    .excel-table-cell {
+        border-color: rgb(var(--black-rgb) / 0.4);
+    }
+
+    .excel-table-header-cell {
+        border-color: rgb(var(--black-rgb) / 0.5);
+    }
+
+    .excel-table-cell-editable:hover {
+        outline-width: 2px;
+    }
+}
+/* ============================================================================
+ * Packed/Completed Row Styling
+ * ============================================================================ */
+
+/* Packed row styling - greyed out appearance */
+.excel-table-row-packed {
+    background: rgb(var(--gray-500-rgb) / 0.3) !important;
+    color: rgb(var(--gold-cream-rgb) / 0.6) !important;
+}
+
+.excel-table-row-packed.excel-table-row-even {
+    background: rgb(var(--gray-500-rgb) / 0.25) !important;
+}
+
+.excel-table-row-packed.excel-table-row-odd {
+    background: rgb(var(--gray-500-rgb) / 0.35) !important;
+}

@@ -1,0 +1,233 @@
+/* Selector with Liquid Glass Design */
+.selector-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 200px;
+    height: 48px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    position: relative;
+    box-sizing: border-box;
+    background: rgb(var(--white-rgb) / 0.1);
+    border: 1px solid rgb(var(--white-rgb) / 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 
+        0 4px 16px rgb(var(--black-rgb) / 0.1),
+        inset 0 1px 0 rgb(var(--white-rgb) / 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.selector-container:hover {
+    background: rgb(var(--white-rgb) / 0.15);
+    border-color: rgb(var(--white-rgb) / 0.3);
+    transform: translateY(-1px);
+    box-shadow: 
+        0 6px 20px rgb(var(--black-rgb) / 0.15),
+        inset 0 1px 0 rgb(var(--white-rgb) / 0.3);
+}
+
+.selector-container.disabled {
+    background: rgb(var(--white-rgb) / 0.05);
+    border-color: rgb(var(--white-rgb) / 0.1);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.selector-container.disabled:hover {
+    background: rgb(var(--white-rgb) / 0.05);
+    border-color: rgb(var(--white-rgb) / 0.1);
+    transform: none;
+    box-shadow: 
+        0 4px 16px rgb(var(--black-rgb) / 0.1),
+        inset 0 1px 0 rgb(var(--white-rgb) / 0.2);
+}
+
+/* Selector Buttons */
+.selector-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 100%;
+    background: rgb(var(--white-rgb) / 0.1);
+    border: none;
+    color: rgb(var(--white-rgb) / 0.9);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    font-family: inherit;
+    user-select: none;
+    outline: none;
+    position: relative;
+}
+
+.selector-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgb(var(--white-rgb) / 0.2);
+}
+
+.prev-button {
+    border-radius: 12px 0 0 12px;
+}
+
+.prev-button::before {
+    right: 0;
+}
+
+.next-button {
+    border-radius: 0 12px 12px 0;
+}
+
+.next-button::before {
+    left: 0;
+}
+
+.selector-button:hover:not(.disabled) {
+    background: rgb(var(--white-rgb) / 0.2);
+    color: rgb(var(--white-rgb));
+    transform: scale(1.05);
+}
+
+.selector-button:active:not(.disabled) {
+    background: rgb(var(--white-rgb) / 0.25);
+    transform: scale(0.98);
+}
+
+.selector-button.disabled {
+    background: rgb(var(--white-rgb) / 0.05);
+    color: rgb(var(--white-rgb) / 0.3);
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.selector-button:focus-visible:not(.disabled) {
+    outline: 2px solid rgb(var(--white-rgb) / 0.5);
+    outline-offset: 2px;
+}
+
+/* Selector Display */
+.selector-display {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: rgb(var(--white-rgb) / 0.05);
+    color: rgb(var(--white-rgb) / 0.95);
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgb(var(--black-rgb) / 0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 12px;
+    box-sizing: border-box;
+    min-width: 0;
+    position: relative;
+}
+
+.selector-display::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgb(var(--white-rgb) / 0.2);
+}
+
+/* Animation for value changes */
+@keyframes valueChange {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.selector-display {
+    animation: valueChange 0.2s ease-out;
+}
+
+/* Disabled state for display */
+.selector-container.disabled .selector-display {
+    color: rgb(var(--white-rgb) / 0.4);
+    background: rgb(var(--white-rgb) / 0.02);
+}
+
+/* Animation for initial load */
+@keyframes selectorFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.selector-container {
+    animation: selectorFadeIn 0.4s ease-out;
+}
+
+/* Responsive font sizing adjustments */
+@container (max-width: 150px) {
+    .selector-button {
+        width: 40px;
+        font-size: 14px !important;
+    }
+    
+    .selector-display {
+        font-size: 14px !important;
+        padding: 0 8px;
+    }
+    
+    .selector-container {
+        height: 40px;
+    }
+}
+
+@container (max-width: 100px) {
+    .selector-button {
+        width: 32px;
+        font-size: 12px !important;
+    }
+    
+    .selector-display {
+        font-size: 12px !important;
+        padding: 0 6px;
+    }
+    
+    .selector-container {
+        height: 36px;
+    }
+}
+
+/* Button press effect */
+.selector-button:not(.disabled):active {
+    box-shadow: inset 0 2px 4px rgb(var(--black-rgb) / 0.2);
+}
+
+/* Improved focus indicators */
+.selector-button:focus:not(.disabled) {
+    background: rgb(var(--white-rgb) / 0.2);
+    z-index: 1;
+}
+
+/* Selection highlighting for keyboard navigation */
+.selector-container:focus-within {
+    outline: 2px solid rgb(var(--white-rgb) / 0.3);
+    outline-offset: 2px;
+}

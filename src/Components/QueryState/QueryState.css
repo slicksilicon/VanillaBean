@@ -1,0 +1,36 @@
+.query-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 24px 16px;
+    box-sizing: border-box;
+}
+
+.query-state-loading {
+    flex-direction: column;
+}
+
+.query-state-error {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    color: rgb(var(--danger-light-rgb));
+}
+
+.query-state-error-icon {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.query-state-error-message {
+    font-size: 13px;
+    color: rgb(var(--white-rgb) / 0.85);
+    max-width: 420px;
+}
+
+.query-state-empty {
+    color: rgb(var(--gray-400-rgb));
+    font-size: 13px;
+    text-align: center;
+}

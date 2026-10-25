@@ -1,0 +1,98 @@
+/* PopUp content — backdrop/panel chrome lives in Modal.css */
+
+.popup-panel {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.popup-message {
+    color: rgb(var(--white-rgb));
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+    font-weight: 400;
+    text-shadow: 0 2px 4px rgb(var(--black-rgb) / 0.3);
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+.popup-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.popup-button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 80px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgb(var(--white-rgb) / 0.2);
+    box-shadow: 0 4px 16px rgb(var(--black-rgb) / 0.2);
+    color: rgb(var(--white-rgb));
+    text-shadow: 0 1px 2px rgb(var(--black-rgb) / 0.3);
+}
+
+.popup-button-ok {
+    background: rgb(var(--success-strong-rgb) / 0.3);
+    border-color: rgb(var(--success-strong-rgb) / 0.4);
+}
+
+.popup-button-ok:hover {
+    background: rgb(var(--success-strong-rgb) / 0.4);
+    border-color: rgb(var(--success-strong-rgb) / 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgb(var(--success-strong-rgb) / 0.3);
+}
+
+.popup-button-ok:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgb(var(--success-strong-rgb) / 0.3);
+}
+
+.popup-button-cancel {
+    background: rgb(var(--danger-rgb) / 0.3);
+    border-color: rgb(var(--danger-rgb) / 0.4);
+}
+
+.popup-button-cancel:hover {
+    background: rgb(var(--danger-rgb) / 0.4);
+    border-color: rgb(var(--danger-rgb) / 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgb(var(--danger-rgb) / 0.3);
+}
+
+.popup-button-cancel:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgb(var(--danger-rgb) / 0.3);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .popup-panel {
+        padding: 24px;
+        gap: 20px;
+    }
+
+    .popup-message {
+        font-size: 14px;
+    }
+
+    .popup-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .popup-button {
+        width: 100%;
+    }
+}

@@ -1,0 +1,72 @@
+.range-slider-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 200px;
+  max-width: 300px;
+  font-family: inherit;
+}
+
+.range-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.range-slider-label {
+  font-weight: 600;
+  color: rgb(var(--gray-800-rgb));
+  font-size: 14px;
+}
+
+.range-slider-value {
+  font-family: monospace;
+  font-size: 13px;
+  color: rgb(var(--gray-600-rgb));
+  background-color: rgb(var(--gray-100-rgb));
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid rgb(var(--gray-200-rgb));
+}
+
+.range-slider-input {
+  width: 100%;
+  cursor: pointer;
+  /* Basic styling for the range input */
+  appearance: auto; 
+  height: 6px;
+  background: rgb(var(--gray-300-rgb));
+  border-radius: 4px;
+  outline: none;
+}
+
+/* Customizing the thumb (slider handle) for Webkit browsers */
+.range-slider-input::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgb(var(--info-rgb)); /* Primary color */
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.range-slider-input::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Customizing the thumb for Firefox */
+.range-slider-input::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgb(var(--info-rgb));
+  cursor: pointer;
+  border: none;
+  transition: transform 0.1s;
+}
+
+.range-slider-input::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}

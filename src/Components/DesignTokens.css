@@ -1,0 +1,88 @@
+/*
+ * Semantic color tokens for Components/*.css.
+ * Values are exposed as "R G B" triples so callers can use either:
+ *   color: rgb(var(--info-rgb));
+ *   background: rgb(var(--info-rgb) / 0.3);
+ * Distinct from Helpers/ColorScheme.css, which defines unrelated
+ * multi-hue palettes for chart data series (Charts/*, TableGrouped,
+ * TableScrollable) and must not be confused with this file.
+ */
+:root {
+    /* Neutrals */
+    --white-rgb: 255 255 255;
+    --black-rgb: 0 0 0;
+    --gray-50-rgb: 249 250 251;
+    --gray-100-rgb: 243 244 246;
+    --gray-200-rgb: 229 231 235;
+    --gray-300-rgb: 209 213 219;
+    --gray-400-rgb: 156 163 175;
+    --gray-500-rgb: 107 114 128;
+    --gray-600-rgb: 75 85 99;
+    --gray-700-rgb: 55 65 81;
+    --gray-800-rgb: 31 41 55;
+    --gray-900-rgb: 17 24 39;
+
+    /* Slate — a deliberately desaturated blue for "present and fine, nothing to do".
+       Reads as calm next to the saturated status colours, which is what lets a screen
+       made almost entirely of these stay quiet enough for the few that are not. */
+    --slate-light-rgb: 148 173 199;
+    --slate-rgb: 95 125 158;
+    --slate-strong-rgb: 62 86 112;
+
+    /* Success (green) */
+    --success-tint-rgb: 209 250 229;
+    --success-light-rgb: 110 231 183;
+    --success-rgb: 16 185 129;
+    --success-strong-rgb: 5 150 105;
+
+    /* Info (blue) */
+    --info-tint-rgb: 219 234 254;
+    --info-light-rgb: 147 197 253;
+    --info-rgb: 59 130 246;
+    --info-strong-rgb: 29 78 216;
+
+    /* Sky (secondary blue accent, distinct from info - used where a
+       component needs two visually different blue states side by side) */
+    --sky-light-rgb: 125 211 252;
+    --sky-rgb: 14 165 233;
+    --sky-strong-rgb: 2 132 199;
+
+    /* Warning (amber) */
+    --warning-tint-rgb: 254 243 199;
+    --warning-light-rgb: 251 191 36;
+    --warning-rgb: 245 158 11;
+    --warning-strong-rgb: 217 119 6;
+
+    /* Danger (red) */
+    --danger-tint-rgb: 254 226 226;
+    --danger-light-rgb: 248 113 113;
+    --danger-rgb: 239 68 68;
+    --danger-strong-rgb: 220 38 38;
+
+    /* Accent (violet) */
+    --accent-tint-rgb: 237 233 254;
+    --accent-light-rgb: 167 139 250;
+    --accent-rgb: 139 92 246;
+
+    /* Gilded/gold (decorative accent for premium/highlighted variants) */
+    --gold-cream-rgb: 250 235 215;
+    --gold-bright-rgb: 255 191 0;
+    --gold-rgb: 184 134 11;
+
+    /* Z-index scale for floating UI. Modal owns the backdrop/dialog tier; Toast renders
+       above everything (including an open modal) so confirmations are never hidden. */
+    --z-modal-backdrop: 1000;
+    --z-modal: 1001;
+    --z-toast: 2000;
+
+    /* Convenience solid-color aliases */
+    --color-white: rgb(var(--white-rgb));
+    --color-black: rgb(var(--black-rgb));
+    --color-success: rgb(var(--success-rgb));
+    --color-info: rgb(var(--info-rgb));
+    --color-sky: rgb(var(--sky-rgb));
+    --color-warning: rgb(var(--warning-rgb));
+    --color-danger: rgb(var(--danger-rgb));
+    --color-accent: rgb(var(--accent-rgb));
+    --color-gold: rgb(var(--gold-rgb));
+}

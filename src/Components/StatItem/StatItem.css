@@ -1,0 +1,162 @@
+/* StatItem Component Styles */
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgb(var(--white-rgb) / 0.08);
+    border-radius: 16px;
+    border: 1px solid rgb(var(--white-rgb) / 0.15);
+    box-shadow: 0 8px 32px rgb(var(--black-rgb) / 0.1);
+    min-width: 140px;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.stat-item:hover {
+    background: rgb(var(--white-rgb) / 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgb(var(--black-rgb) / 0.15);
+}
+
+.stat-number {
+    font-size: 28px;
+    font-weight: 700;
+    color: rgb(var(--white-rgb) / 0.95);
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgb(var(--black-rgb) / 0.3);
+}
+
+.stat-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgb(var(--white-rgb) / 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+/* Stat Item Variants */
+.stat-item-success {
+    background: rgb(var(--success-rgb) / 0.1);
+    border-color: rgb(var(--success-rgb) / 0.2);
+}
+
+.stat-item-success:hover {
+    background: rgb(var(--success-rgb) / 0.15);
+}
+
+.stat-item-success .stat-number {
+    color: rgb(var(--success-light-rgb));
+}
+
+.stat-item-warning {
+    background: rgb(var(--warning-rgb) / 0.1);
+    border-color: rgb(var(--warning-rgb) / 0.2);
+}
+
+.stat-item-warning:hover {
+    background: rgb(var(--warning-rgb) / 0.15);
+}
+
+.stat-item-warning .stat-number {
+    color: rgb(var(--warning-light-rgb));
+}
+
+.stat-item-info {
+    background: rgb(var(--info-rgb) / 0.1);
+    border-color: rgb(var(--info-rgb) / 0.2);
+}
+
+.stat-item-info:hover {
+    background: rgb(var(--info-rgb) / 0.15);
+}
+
+.stat-item-info .stat-number {
+    color: rgb(var(--info-light-rgb));
+}
+
+.stat-item-danger {
+    background: rgb(var(--danger-rgb) / 0.1);
+    border-color: rgb(var(--danger-rgb) / 0.2);
+}
+
+.stat-item-danger:hover {
+    background: rgb(var(--danger-rgb) / 0.15);
+}
+
+.stat-item-danger .stat-number {
+    color: rgb(var(--danger-light-rgb));
+}
+
+/* Icon variant — the figure sits beside the glyph rather than under it, so a row of
+   tiles reads as a summary strip. Only applied when an `icon` prop is supplied. */
+.stat-item-with-icon {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 14px;
+    text-align: left;
+}
+
+.stat-item .stat-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+}
+
+.stat-item-with-icon .stat-body {
+    align-items: flex-start;
+}
+
+.stat-item-with-icon .stat-number {
+    margin-bottom: 2px;
+    line-height: 1.1;
+}
+
+.stat-item-with-icon .stat-label {
+    text-align: left;
+}
+
+.stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgb(var(--white-rgb) / 0.08);
+    border: 1px solid rgb(var(--white-rgb) / 0.12);
+    /* Light stop: these tiles sit on dark surfaces, where the base --info-rgb reads muddy. */
+    color: rgb(var(--info-light-rgb));
+}
+
+.stat-item-success .stat-icon { color: rgb(var(--success-light-rgb)); }
+.stat-item-warning .stat-icon { color: rgb(var(--warning-light-rgb)); }
+.stat-item-danger .stat-icon { color: rgb(var(--danger-light-rgb)); }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .stat-item {
+        min-width: 120px;
+        padding: 16px;
+    }
+    
+    .stat-number {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stat-item {
+        width: 100%;
+        max-width: 200px;
+        padding: 14px;
+    }
+    
+    .stat-number {
+        font-size: 22px;
+    }
+}

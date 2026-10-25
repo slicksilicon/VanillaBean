@@ -1,0 +1,63 @@
+{
+    "template": "EscapeVelocity",
+    "template_path": "~/Workspaces/EscapeVelocity",
+    "synced_to": "7.3.1",
+    "synced_on": "2026-10-25",
+
+    "scope": [
+        "FrontEnd/",
+        "docs/glass-panel-seam-fix.md"
+    ],
+
+    "path_map": [
+        { "from": "FrontEnd/generate-types.sh", "to": "codegen/ev/generate-types.sh" },
+        { "from": "FrontEnd/extract-types.py", "to": "codegen/ev/extract-types.py" },
+        { "from": "FrontEnd/generate-queries.sh", "to": "codegen/ev/generate-queries.sh" },
+        { "from": "FrontEnd/", "to": "" },
+        { "from": "docs/", "to": "docs/" }
+    ],
+
+    "opted_out": [
+        { "path": "FrontEnd/src/Query/**", "reason": "Generated from EscapeVelocity's own backend. Backend hooks are generated per backend into src/Backends/<Name>/Query/ instead; only Currency, Amount and Range are mirrored (they are compared, not opted out)." },
+        { "path": "FrontEnd/src/types.ts", "reason": "openapi-typescript output for EscapeVelocity's backend - generated per backend in .codegen/ and discarded." },
+        { "path": "FrontEnd/openapi.json", "reason": "EscapeVelocity's own spec. Each backend's spec is kept at src/Backends/<Name>/openapi.json." },
+        { "path": "FrontEnd/src/Hooks/useAuth.tsx", "reason": "No login of its own - EscapeVelocity backends are reached with the session the user already has in that app." },
+        { "path": "FrontEnd/src/Segments/Login/**", "reason": "No login of its own." },
+        { "path": "FrontEnd/src/Hooks/useWebSocket.tsx", "reason": "Streams the app's own backend logs; there is no own backend." },
+        { "path": "FrontEnd/src/Components/LogWindow/**", "reason": "Needs useWebSocket and the backend's log endpoints." },
+        { "path": "FrontEnd/src/assets/logwindow.png", "reason": "Only used by the LogWindow toggle." },
+        { "path": "FrontEnd/src/Hooks/useCheckBackEndVersionNumber.tsx", "reason": "Replaced by the per-backend version check in src/Backends/useBackendSession.ts." },
+        { "path": "FrontEnd/src/Hooks/invalidation.ts", "reason": "Built on EscapeVelocity's generated storage hooks. Add per-backend invalidate<Domain>Data helpers next to the segment that needs them." },
+        { "path": "FrontEnd/src/Components/FolderSelectionDialog/**", "reason": "Browses the backend's filesystem through /api/storage." },
+        { "path": "FrontEnd/src/Components/VideoPlayer/**", "reason": "Hard-codes the app's own backend streaming URL." },
+        { "path": "FrontEnd/src/Components/PasswordInput/**", "reason": "Broken in EscapeVelocity 7.3.1: imports assets/icon-show.png and icon-hide.png, which do not exist. Adopt once fixed upstream." },
+        { "path": "FrontEnd/src/assets/global_selector.png", "reason": "Not referenced by any file." },
+        { "path": "FrontEnd/src/Segments/ImageTools/**", "reason": "Backend demo feature (background remover / ICO converter)." },
+        { "path": "FrontEnd/src/segmentOrdering.ts", "reason": "Tab order is fixed in code (SEGMENT_ORDER in src/segmentsConfig.ts), the same in every environment, instead of read from VITE_APP_PRIORITY_SEGMENTS." },
+        { "path": "FrontEnd/generate-segments.sh", "reason": "Segments are discovered at build time by import.meta.glob in src/segmentsConfig.ts - no codegen step for Vercel to run." },
+        { "path": "FrontEnd/build.sh", "reason": "Single-backend codegen + bundle build. Replaced by build-backends.sh and check.sh." },
+        { "path": "FrontEnd/build-apis.sh", "reason": "Single-backend pipeline. Replaced by build-backends.sh, which drives the same generators once per backend." },
+        { "path": "FrontEnd/read_api.sh", "reason": "Interactive spec download. build-backends.sh fetches each backend's spec itself." },
+        { "path": "FrontEnd/extract-types.sh", "reason": "Runs ./extract-types.py relative to the working directory; build-backends.sh calls codegen/ev/extract-types.py directly." },
+        { "path": "FrontEnd/generation-status.py", "reason": "Git-status helper for EscapeVelocity's src/Query layout." },
+        { "path": "FrontEnd/create_env.sh", "reason": "Network/secret prompts for a backend. VanillaBean commits .env and documents .env.local.sample." },
+        { "path": "FrontEnd/.env.sample", "reason": "Replaced by the committed .env (public build config) and .env.local.sample (local backend URLs)." },
+        { "path": "FrontEnd/copilot-instructions.md", "reason": "Formatting rules are in CLAUDE.md." }
+    ],
+
+    "deviations": [
+        { "path": "FrontEnd/src/main.tsx", "reason": "No GoogleOAuthProvider/AuthProvider. A 401 re-probes backend sessions instead of raising the auth-expired event." },
+        { "path": "FrontEnd/src/App.tsx", "reason": "No login gate, WebSocketProvider, log window, user card or version banner. Segments are wrapped in BackendGate and come pre-ordered from segmentsConfig.ts." },
+        { "path": "FrontEnd/src/Hooks/useAppSettings.tsx", "reason": "No userId (no auth)." },
+        { "path": "FrontEnd/src/segmentsConfig.ts", "reason": "Hand-written import.meta.glob discovery with requiredBackends filtering and the fixed SEGMENT_ORDER, replacing the generated file." },
+        { "path": "FrontEnd/src/Query/Types/index.ts", "reason": "Exports only the three mirrored types." },
+        { "path": "FrontEnd/src/Segments/Sample/Sample.tsx", "reason": "Demo rewritten without a backend (useStoredState, Toast)." },
+        { "path": "FrontEnd/src/Segments/Sample/Sample.css", "reason": "Layout for the rewritten demo; colours moved to tokens." },
+        { "path": "FrontEnd/vite.config.ts", "reason": "Port 7400 with strictPort; no COOP/COEP headers (only the Google sign-in popup needed them)." },
+        { "path": "FrontEnd/eslint.config.js", "reason": "No e2e/Playwright block; ignores .vercel and .codegen." },
+        { "path": "FrontEnd/package.json", "reason": "Name; drops @react-oauth/google and @github/copilot. Keep the remaining version ranges equal to EscapeVelocity's." },
+        { "path": "FrontEnd/package-lock.json", "reason": "Seeded from EscapeVelocity's lockfile so shared code builds against the same versions; differs only by name and the pruned packages. On a sync that changes EscapeVelocity's lockfile, re-seed it the same way." },
+        { "path": "FrontEnd/README.md", "reason": "VanillaBean's own README." },
+        { "path": "FrontEnd/init_project.sh", "reason": "VanillaBean's own init: name, title and port only - no backend, Mongo or OAuth prompts." }
+    ]
+}

@@ -1,0 +1,81 @@
+@import "./Components/DesignTokens.css";
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+body {
+    margin: 0;    
+    place-items: center;    
+    min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+/* Keyboard-only focus ring.
+ *
+ * The Vite starter shipped this as `button:focus, button:focus-visible` with a 4px `auto`
+ * outline. Two problems: it fired on mouse clicks as well as keyboard, and a 4px ring drawn
+ * outside the button box is clipped by any scrolling or `overflow: hidden` ancestor - so in
+ * a scrollable list the ring appeared sliced off at the container edge. Component
+ * stylesheets were each working around it with `outline: none`, which is why so many carry
+ * that line.
+ *
+ * `:focus-visible` alone restricts it to keyboard navigation, and 2px at a 2px offset fits
+ * inside the horizontal padding the app's scroll containers already have. A component that
+ * wants its own ring still overrides this; one that sets `outline: none` no longer has to. */
+button:focus-visible {
+  outline: 2px solid rgb(var(--info-rgb));
+  outline-offset: 2px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}

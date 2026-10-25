@@ -1,0 +1,247 @@
+/* ================================================
+   ImageGallery – Apple Glassmorphism Design
+   ================================================ */
+
+/* ── Outer Wrapper ── */
+.image-gallery-outer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* ── Container ── */
+.image-gallery {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgb(var(--white-rgb) / 0.15);
+    box-shadow: 0 4px 16px rgb(var(--black-rgb) / 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ── Color Variants ── */
+.image-gallery-primary {
+    background: rgb(var(--white-rgb) / 0.1);
+    border-color: rgb(var(--white-rgb) / 0.2);
+}
+
+.image-gallery-secondary {
+    background: rgb(var(--white-rgb) / 0.05);
+    border-color: rgb(var(--white-rgb) / 0.12);
+}
+
+.image-gallery-success {
+    background: rgb(var(--success-rgb) / 0.1);
+    border-color: rgb(var(--success-rgb) / 0.25);
+}
+
+.image-gallery-info {
+    background: rgb(var(--info-rgb) / 0.1);
+    border-color: rgb(var(--info-rgb) / 0.25);
+}
+
+.image-gallery-warning {
+    background: rgb(var(--warning-rgb) / 0.1);
+    border-color: rgb(var(--warning-rgb) / 0.25);
+}
+
+.image-gallery-danger {
+    background: rgb(var(--danger-rgb) / 0.1);
+    border-color: rgb(var(--danger-rgb) / 0.25);
+}
+
+.image-gallery-gilded-noir {
+    background: rgb(var(--gold-rgb) / 0.15);
+    border-color: rgb(var(--gold-bright-rgb) / 0.3);
+    box-shadow: 0 4px 16px rgb(var(--gold-rgb) / 0.15);
+}
+
+/* ── Horizontal Spacing ── */
+.gallery-h-none {
+    column-gap: 0px;
+}
+
+.gallery-h-xs {
+    column-gap: 2px;
+}
+
+.gallery-h-md {
+    column-gap: 8px;
+}
+
+.gallery-h-lg {
+    column-gap: 16px;
+}
+
+.gallery-h-between {
+    column-gap: 0px;
+    justify-content: space-between;
+}
+
+/* ── Vertical Spacing ── */
+.gallery-v-none {
+    row-gap: 0px;
+}
+
+.gallery-v-xs {
+    row-gap: 2px;
+}
+
+.gallery-v-md {
+    row-gap: 8px;
+}
+
+.gallery-v-lg {
+    row-gap: 16px;
+}
+
+.gallery-v-between {
+    row-gap: 0px;
+    align-content: space-between;
+}
+
+/* ── Gallery Item ── */
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.gallery-item:hover {
+    transform: scale(1.02);
+}
+
+.gallery-item:active {
+    transform: scale(0.98);
+}
+
+/* ── Drag States ── */
+.gallery-item.dragging {
+    opacity: 0.35;
+    transform: scale(0.95);
+}
+
+.gallery-item.drag-over {
+    outline: 2px solid rgb(var(--white-rgb) / 0.5);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* ── Image Wrapper (Black-bar letterboxing) ── */
+.gallery-item-image-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(var(--black-rgb));
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.gallery-item-image-wrapper img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+/* ── Caption ── */
+.gallery-item-caption {
+    width: 100%;
+    text-align: center;
+    padding-top: 4px;
+    overflow: hidden;
+}
+
+.gallery-item-line1 {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgb(var(--white-rgb) / 0.9);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+.gallery-item-line2 {
+    font-size: 10px;
+    font-weight: 400;
+    color: rgb(var(--white-rgb) / 0.6);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+/* ── Scrollbar Styling ── */
+.image-gallery::-webkit-scrollbar {
+    width: 6px;
+}
+
+.image-gallery::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.image-gallery::-webkit-scrollbar-thumb {
+    background: rgb(var(--white-rgb) / 0.2);
+    border-radius: 3px;
+}
+
+.image-gallery::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--white-rgb) / 0.35);
+}
+
+/* ── Cross-gallery Drop Highlight ── */
+.image-gallery.gallery-external-drag-over {
+    outline: 2px dashed rgb(var(--info-rgb) / 0.6);
+    outline-offset: -2px;
+    background: rgb(var(--info-rgb) / 0.08);
+}
+
+/* ── Delete Bin ── */
+.gallery-delete-bin {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgb(var(--danger-rgb) / 0.15);
+    border: 1px solid rgb(var(--danger-rgb) / 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: rgb(var(--danger-rgb) / 0.7);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    pointer-events: auto;
+    cursor: default;
+}
+
+.gallery-delete-bin svg {
+    width: 22px;
+    height: 22px;
+}
+
+.gallery-delete-bin-active {
+    background: rgb(var(--danger-rgb) / 0.35);
+    border-color: rgb(var(--danger-rgb) / 0.6);
+    color: rgb(var(--white-rgb) / 0.95);
+    transform: scale(1.1);
+    box-shadow: 0 4px 20px rgb(var(--danger-rgb) / 0.3);
+}

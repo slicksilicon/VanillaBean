@@ -1,0 +1,321 @@
+/* Checkbox Container */
+.checkbox-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Checkbox Box */
+.checkbox-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(var(--white-rgb) / 0.1);
+    border-radius: 8px;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 16px rgb(var(--black-rgb) / 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    cursor: pointer;
+    overflow: visible;
+}
+
+.checkbox-box:hover:not(.checkbox-box-disabled) {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgb(var(--black-rgb) / 0.15);
+}
+
+.checkbox-box:active:not(.checkbox-box-disabled) {
+    transform: scale(0.98);
+}
+
+.checkbox-box:focus-visible {
+    outline: 2px solid rgb(var(--white-rgb) / 0.5);
+    outline-offset: 2px;
+}
+
+/* Checkmark Emoji */
+.checkbox-checkmark {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 24px;
+    line-height: 1;
+    pointer-events: none;
+    animation: checkmarkAppear 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    filter: drop-shadow(0 2px 4px rgb(var(--black-rgb) / 0.3));
+}
+
+@keyframes checkmarkAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(-45deg);
+    }
+    60% {
+        transform: scale(1.2) rotate(10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Checkbox Label */
+.checkbox-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(var(--white-rgb) / 0.9);
+    text-shadow: 0 1px 2px rgb(var(--black-rgb) / 0.2);
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Size Variants */
+.checkbox-small .checkbox-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+}
+
+.checkbox-small .checkbox-checkmark {
+    font-size: 36px;
+    top: -12px;
+    right: -8px;
+}
+
+.checkbox-small .checkbox-label {
+    font-size: 12px;
+}
+
+.checkbox-medium .checkbox-box {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+}
+
+.checkbox-medium .checkbox-checkmark {
+    font-size: 24px;
+    top: -8px;
+    right: -8px;
+}
+
+.checkbox-medium .checkbox-label {
+    font-size: 14px;
+}
+
+.checkbox-large .checkbox-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+}
+
+.checkbox-large .checkbox-checkmark {
+    font-size: 32px;
+    top: -10px;
+    right: -10px;
+}
+
+.checkbox-large .checkbox-label {
+    font-size: 16px;
+}
+
+/* Color Scheme Variants */
+
+/* Primary */
+.checkbox-box-primary {
+    background: rgb(var(--white-rgb) / 0.1);
+    border-color: rgb(var(--white-rgb) / 0.2);
+}
+
+.checkbox-box-primary:hover:not(.checkbox-box-disabled) {
+    background: rgb(var(--white-rgb) / 0.15);
+    border-color: rgb(var(--white-rgb) / 0.3);
+}
+
+.checkbox-box-primary.checkbox-box-checked {
+    background: rgb(var(--white-rgb) / 0.2);
+    border-color: rgb(var(--white-rgb) / 0.4);
+}
+
+/* Secondary */
+.checkbox-box-secondary {
+    background: rgb(var(--white-rgb) / 0.08);
+    border-color: rgb(var(--white-rgb) / 0.15);
+}
+
+.checkbox-box-secondary:hover:not(.checkbox-box-disabled) {
+    background: rgb(var(--white-rgb) / 0.12);
+    border-color: rgb(var(--white-rgb) / 0.25);
+}
+
+.checkbox-box-secondary.checkbox-box-checked {
+    background: rgb(var(--white-rgb) / 0.15);
+    border-color: rgb(var(--white-rgb) / 0.3);
+}
+
+/* Success */
+.checkbox-box-success {
+    background: rgb(var(--success-rgb) / 0.15);
+    border-color: rgb(var(--success-rgb) / 0.3);
+}
+
+.checkbox-box-success:hover:not(.checkbox-box-disabled) {
+    background: rgb(var(--success-rgb) / 0.2);
+    border-color: rgb(var(--success-rgb) / 0.4);
+}
+
+.checkbox-box-success.checkbox-box-checked {
+    background: rgb(var(--success-rgb) / 0.25);
+    border-color: rgb(var(--success-rgb) / 0.5);
+}
+
+/* Info */
+.checkbox-box-info {
+    background: rgb(var(--info-rgb) / 0.15);
+    border-color: rgb(var(--info-rgb) / 0.3);
+}
+
+.checkbox-box-info:hover:not(.checkbox-box-disabled) {
+    background: rgb(var(--info-rgb) / 0.2);
+    border-color: rgb(var(--info-rgb) / 0.4);
+}
+
+.checkbox-box-info.checkbox-box-checked {
+    background: rgb(var(--info-rgb) / 0.25);
+    border-color: rgb(var(--info-rgb) / 0.5);
+}
+
+/* Warning */
+.checkbox-box-warning {
+    background: rgb(var(--warning-rgb) / 0.15);
+    border-color: rgb(var(--warning-rgb) / 0.3);
+}
+
+.checkbox-box-warning:hover:not(.checkbox-box-disabled) {
+    background: rgb(var(--warning-rgb) / 0.2);
+    border-color: rgb(var(--warning-rgb) / 0.4);
+}
+
+.checkbox-box-warning.checkbox-box-checked {
+    background: rgb(var(--warning-rgb) / 0.25);
+    border-color: rgb(var(--warning-rgb) / 0.5);
+}
+
+/* Danger */
+.checkbox-box-danger {
+    background: rgb(var(--danger-rgb) / 0.15);
+    border-color: rgb(var(--danger-rgb) / 0.3);
+}
+
+.checkbox-box-danger:hover:not(.checkbox-box-disabled) {
+    background: rgb(var(--danger-rgb) / 0.2);
+    border-color: rgb(var(--danger-rgb) / 0.4);
+}
+
+.checkbox-box-danger.checkbox-box-checked {
+    background: rgb(var(--danger-rgb) / 0.25);
+    border-color: rgb(var(--danger-rgb) / 0.5);
+}
+
+/* Disabled State */
+.checkbox-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.checkbox-box-disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.checkbox-disabled .checkbox-label {
+    cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .checkbox-large .checkbox-box {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .checkbox-large .checkbox-checkmark {
+        font-size: 28px;
+    }
+    
+    .checkbox-medium .checkbox-box {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .checkbox-medium .checkbox-checkmark {
+        font-size: 20px;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .checkbox-box {
+        transition: none;
+    }
+    
+    .checkbox-checkmark {
+        animation: none;
+    }
+    
+    .checkbox-box:hover:not(.checkbox-box-disabled) {
+        transform: none;
+    }
+    
+    .checkbox-box:active:not(.checkbox-box-disabled) {
+        transform: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .checkbox-box {
+        border-width: 3px;
+    }
+}
+
+/* Indeterminate ("some but not all") state — a dash instead of a tick */
+.checkbox-dash {
+    width: 55%;
+    height: 2px;
+    border-radius: 1px;
+    background: rgb(var(--white-rgb) / 0.85);
+    pointer-events: none;
+}
+
+/* Compact density variant for table/grid rows.
+   The default checkmark is an oversized emoji deliberately overflowing the box, which reads
+   as playful at 28px and as broken at 14px — so the compact variant draws it inline instead
+   and drops the hover scale/shadow that would jitter a dense row on mouse-over. */
+.checkbox-compact .checkbox-box {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    border-width: 1px;
+    box-shadow: none;
+}
+
+.checkbox-compact .checkbox-box:hover:not(.checkbox-box-disabled) {
+    transform: none;
+    box-shadow: none;
+}
+
+.checkbox-compact .checkbox-checkmark {
+    position: static;
+    top: auto;
+    right: auto;
+    font-size: 10px;
+    line-height: 1;
+    filter: none;
+    animation: none;
+}
+
+.checkbox-compact .checkbox-label {
+    font-size: 12px;
+}

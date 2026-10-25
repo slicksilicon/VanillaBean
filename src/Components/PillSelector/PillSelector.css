@@ -1,0 +1,224 @@
+/* Pill Selector Container */
+.pill-selector-container {
+    display: flex;
+    gap: 12px;
+    padding: 8px;
+    background: rgb(var(--white-rgb) / 0.05);
+    border-radius: 16px;
+    border: 1px solid rgb(var(--white-rgb) / 0.1);
+    box-shadow: 0 4px 16px rgb(var(--black-rgb) / 0.1);
+}
+
+.pill-selector-horizontal {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.pill-selector-horizontal::-webkit-scrollbar {
+    display: none;
+}
+
+.pill-selector-vertical {
+    flex-direction: column;
+}
+
+/* Pill Item Base Styles */
+.pill-selector-item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    border-radius: 24px;
+    border: 1px solid transparent;
+    box-shadow: 0 4px 16px rgb(var(--black-rgb) / 0.05);
+    overflow: hidden;
+    white-space: nowrap;
+    text-shadow: 0 1px 2px rgb(var(--black-rgb) / 0.1);
+    background: rgb(var(--white-rgb) / 0.1);
+    border-color: rgb(var(--white-rgb) / 0.15);
+    color: rgb(var(--white-rgb) / 0.8);
+}
+
+.pill-selector-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgb(var(--black-rgb) / 0.15);
+    background: rgb(var(--white-rgb) / 0.15);
+    border-color: rgb(var(--white-rgb) / 0.25);
+    color: rgb(var(--white-rgb) / 0.95);
+}
+
+.pill-selector-item:active {
+    transform: translateY(0px);
+    transition: all 0.1s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.pill-selector-item:focus-visible {
+    outline: 2px solid rgb(var(--white-rgb) / 0.4);
+    outline-offset: 2px;
+}
+
+/* Size Variants */
+.pill-selector-small {
+    padding: 6px 16px;
+    font-size: 12px;
+    min-height: 28px;
+}
+
+.pill-selector-medium {
+    padding: 10px 24px;
+    font-size: 14px;
+    min-height: 36px;
+}
+
+.pill-selector-large {
+    padding: 14px 32px;
+    font-size: 16px;
+    min-height: 44px;
+}
+
+/* Selected State - More prominent glassmorphic effect */
+.pill-selector-selected {
+    background: rgb(var(--white-rgb) / 0.3) !important;
+    border-color: rgb(var(--white-rgb) / 0.5) !important;
+    color: rgb(var(--white-rgb)) !important;
+    box-shadow: 0 8px 32px rgb(var(--black-rgb) / 0.2), inset 0 2px 8px rgb(var(--white-rgb) / 0.2) !important;
+    font-weight: 700;
+}
+
+.pill-selector-selected:hover {
+    transform: translateY(-1px);
+}
+
+/* Highlighted State - First N items */
+.pill-selector-highlighted:not(.pill-selector-selected) {
+    background: rgb(var(--white-rgb) / 0.15);
+    border-color: rgb(var(--white-rgb) / 0.25);
+    color: rgb(var(--white-rgb) / 0.9);
+}
+
+/* Color Scheme Variants */
+
+/* Primary */
+.pill-selector-primary.pill-selector-selected {
+    background: rgb(var(--info-rgb) / 0.4) !important;
+    border-color: rgb(var(--info-rgb) / 0.6) !important;
+}
+
+.pill-selector-primary.pill-selector-highlighted:not(.pill-selector-selected) {
+    background: rgb(var(--info-rgb) / 0.15);
+    border-color: rgb(var(--info-rgb) / 0.25);
+}
+
+/* Secondary */
+.pill-selector-secondary.pill-selector-selected {
+    background: rgb(var(--gray-400-rgb) / 0.4) !important;
+    border-color: rgb(var(--gray-400-rgb) / 0.6) !important;
+}
+
+.pill-selector-secondary.pill-selector-highlighted:not(.pill-selector-selected) {
+    background: rgb(var(--gray-400-rgb) / 0.15);
+    border-color: rgb(var(--gray-400-rgb) / 0.25);
+}
+
+/* Success */
+.pill-selector-success.pill-selector-selected {
+    background: rgb(var(--success-rgb) / 0.4) !important;
+    border-color: rgb(var(--success-rgb) / 0.6) !important;
+}
+
+.pill-selector-success.pill-selector-highlighted:not(.pill-selector-selected) {
+    background: rgb(var(--success-rgb) / 0.15);
+    border-color: rgb(var(--success-rgb) / 0.25);
+}
+
+/* Info */
+.pill-selector-info.pill-selector-selected {
+    background: rgb(var(--info-rgb) / 0.4) !important;
+    border-color: rgb(var(--info-rgb) / 0.6) !important;
+}
+
+.pill-selector-info.pill-selector-highlighted:not(.pill-selector-selected) {
+    background: rgb(var(--info-rgb) / 0.15);
+    border-color: rgb(var(--info-rgb) / 0.25);
+}
+
+/* Warning */
+.pill-selector-warning.pill-selector-selected {
+    background: rgb(var(--warning-light-rgb) / 0.4) !important;
+    border-color: rgb(var(--warning-light-rgb) / 0.6) !important;
+}
+
+.pill-selector-warning.pill-selector-highlighted:not(.pill-selector-selected) {
+    background: rgb(var(--warning-light-rgb) / 0.15);
+    border-color: rgb(var(--warning-light-rgb) / 0.25);
+}
+
+/* Danger */
+.pill-selector-danger.pill-selector-selected {
+    background: rgb(var(--danger-rgb) / 0.4) !important;
+    border-color: rgb(var(--danger-rgb) / 0.6) !important;
+}
+
+.pill-selector-danger.pill-selector-highlighted:not(.pill-selector-selected) {
+    background: rgb(var(--danger-rgb) / 0.15);
+    border-color: rgb(var(--danger-rgb) / 0.25);
+}
+
+/* Animation */
+@keyframes pillFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.pill-selector-item {
+    animation: pillFadeIn 0.3s ease-out;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .pill-selector-item {
+        animation: none;
+        transition: none;
+    }
+    
+    .pill-selector-item:hover,
+    .pill-selector-item:active {
+        transform: none;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pill-selector-horizontal {
+        flex-wrap: wrap;
+    }
+    
+    .pill-selector-small {
+        padding: 4px 12px;
+        font-size: 11px;
+    }
+    
+    .pill-selector-medium {
+        padding: 8px 20px;
+        font-size: 13px;
+    }
+    
+    .pill-selector-large {
+        padding: 12px 28px;
+        font-size: 15px;
+    }
+}

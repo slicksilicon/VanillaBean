@@ -1,0 +1,66 @@
+/* Error Boundary fallback — matches the app's Liquid Glass design */
+
+.error-boundary-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    padding: 24px;
+}
+
+.error-boundary-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    max-width: 420px;
+    padding: 28px 32px;
+
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+    text-align: center;
+}
+
+.error-boundary-icon {
+    font-size: 28px;
+}
+
+.error-boundary-message {
+    color: #ffffff;
+    font-size: 15px;
+    line-height: 1.5;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0;
+}
+
+.error-boundary-retry {
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    background: rgba(76, 175, 80, 0.3);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.error-boundary-retry:hover {
+    background: rgba(76, 175, 80, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+}
+
+.error-boundary-retry:active {
+    transform: translateY(0);
+}

@@ -1,0 +1,95 @@
+/* Bar Chart Component Styles */
+.bar-chart-selectors {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bar-chart-chart {
+    width: 100%;
+    height: calc(100% - 100px);
+    box-sizing: border-box;
+}
+
+/* Tooltip for the hovered bar. Floats above the plot, so backdrop-filter would be
+   permitted here - it is deliberately not used: the app sits on a solid black ground
+   where a blur buys nothing and costs a compositing seam. */
+.bar-chart-tooltip {
+    background: rgba(14, 14, 14, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+    padding: 9px 11px;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.6);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 280px;
+    pointer-events: none;
+}
+
+.bar-chart-tooltip-header {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.40);
+    margin-bottom: 6px;
+}
+
+.bar-chart-tooltip-note {
+    color: rgba(147, 197, 253, 0.9);
+}
+
+.bar-chart-tooltip-row,
+.bar-chart-tooltip-total {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.7;
+}
+
+.bar-chart-tooltip-row i {
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+    flex: 0 0 auto;
+}
+
+.bar-chart-tooltip-row b,
+.bar-chart-tooltip-total b {
+    margin-left: auto;
+    padding-left: 16px;
+    font-weight: 600;
+}
+
+.bar-chart-tooltip-total {
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.62);
+}
+
+/* Pin the tooltip to the top-right of the plot.
+ *
+ * recharts places its tooltip wrapper with inline `left`/`top`/`transform` from the
+ * `position` prop, which only takes absolute pixels - it cannot express "right edge",
+ * because that depends on the rendered width. Overriding the inline style here is what
+ * makes the placement responsive. `:has()` scopes it to this chart's tooltip, leaving any
+ * other recharts tooltip on the page alone. */
+.recharts-tooltip-wrapper:has(.bar-chart-tooltip) {
+    left: auto !important;
+    right: 8px !important;
+    top: 0 !important;
+    bottom: auto !important;
+    transform: none !important;
+    pointer-events: none;
+}

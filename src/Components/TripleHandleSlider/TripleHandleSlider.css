@@ -1,0 +1,168 @@
+/* ================================================
+   TripleHandleSlider – 3-handle range calibration slider
+   Apple Glassmorphism Design
+   ================================================ */
+
+.triple-slider-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 6px;
+    user-select: none;
+}
+
+.triple-slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.triple-slider-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgb(var(--white-rgb) / 0.85);
+}
+
+.triple-slider-values {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: monospace;
+    font-size: 12px;
+}
+
+.triple-slider-separator {
+    color: rgb(var(--white-rgb) / 0.35);
+}
+
+.triple-slider-value {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+}
+
+.triple-slider-value--min {
+    background: rgb(var(--sky-light-rgb) / 0.2);
+    color: rgb(var(--sky-light-rgb));
+    border: 1px solid rgb(var(--sky-light-rgb) / 0.3);
+}
+
+.triple-slider-value--target {
+    background: rgb(var(--success-light-rgb) / 0.2);
+    color: rgb(var(--success-light-rgb));
+    border: 1px solid rgb(var(--success-light-rgb) / 0.3);
+}
+
+.triple-slider-value--max {
+    background: rgb(var(--danger-light-rgb) / 0.2);
+    color: rgb(var(--danger-light-rgb));
+    border: 1px solid rgb(var(--danger-light-rgb) / 0.3);
+}
+
+/* Track wrapper — provides the relative positioning context for absolute handles */
+.triple-slider-track-wrapper {
+    position: relative;
+    height: 36px;
+    display: flex;
+    align-items: center;
+}
+
+.triple-slider-track {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    height: 6px;
+    background: rgb(var(--white-rgb) / 0.12);
+    border-radius: 3px;
+    overflow: visible;
+}
+
+/* Highlighted band between min and max */
+.triple-slider-fill {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background: rgb(var(--sky-light-rgb) / 0.35);
+    border-radius: 3px;
+}
+
+/* Vertical line marking the target */
+.triple-slider-target-line {
+    position: absolute;
+    top: -5px;
+    bottom: -5px;
+    width: 2px;
+    transform: translateX(-50%);
+    background: rgb(var(--success-light-rgb) / 0.8);
+    border-radius: 1px;
+}
+
+/* ── Handles ── */
+.triple-slider-handle {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    cursor: grab;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    transition: box-shadow 0.15s ease, transform 0.1s ease;
+    z-index: 2;
+}
+
+.triple-slider-handle:active {
+    cursor: grabbing;
+    transform: translateX(-50%) scale(1.2);
+}
+
+.triple-slider-handle--min {
+    background: rgb(var(--sky-light-rgb));
+    border: 2px solid rgb(var(--white-rgb) / 0.5);
+    box-shadow: 0 0 0 3px rgb(var(--sky-light-rgb) / 0.3), 0 2px 6px rgb(var(--black-rgb) / 0.4);
+}
+
+.triple-slider-handle--target {
+    background: rgb(var(--success-light-rgb));
+    border: 2px solid rgb(var(--white-rgb) / 0.6);
+    box-shadow: 0 0 0 3px rgb(var(--success-light-rgb) / 0.3), 0 2px 6px rgb(var(--black-rgb) / 0.4);
+    z-index: 3;
+}
+
+.triple-slider-handle--max {
+    background: rgb(var(--danger-light-rgb));
+    border: 2px solid rgb(var(--white-rgb) / 0.5);
+    box-shadow: 0 0 0 3px rgb(var(--danger-light-rgb) / 0.3), 0 2px 6px rgb(var(--black-rgb) / 0.4);
+}
+
+.triple-slider-handle:hover {
+    transform: translateX(-50%) scale(1.15);
+}
+
+.triple-slider-handle-label {
+    position: absolute;
+    top: 22px;
+    font-size: 9px;
+    font-weight: 600;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    color: rgb(var(--white-rgb) / 0.7);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.triple-slider-handle:hover .triple-slider-handle-label {
+    opacity: 1;
+}
+
+/* Bounds labels */
+.triple-slider-bounds {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: rgb(var(--white-rgb) / 0.35);
+    padding: 0 8px;
+}

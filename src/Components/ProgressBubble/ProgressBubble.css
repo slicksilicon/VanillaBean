@@ -1,0 +1,314 @@
+/* Progress Bubble Container */
+.progress-bubble-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Bubble Circle */
+.progress-bubble-circle {
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgb(var(--white-rgb) / 0.2);
+    box-shadow: 0 8px 32px rgb(var(--black-rgb) / 0.2),
+                inset 0 0 20px rgb(var(--white-rgb) / 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.progress-bubble-circle:hover {
+    box-shadow: 0 12px 40px rgb(var(--black-rgb) / 0.3),
+                inset 0 0 30px rgb(var(--white-rgb) / 0.15);
+    transform: scale(1.02);
+}
+
+/* Liquid Fill */
+.progress-bubble-liquid {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: height 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+    overflow: hidden;
+}
+
+/* Wave Animation */
+.progress-bubble-wave {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    border-radius: 45%;
+    animation: wave 6s infinite linear;
+    opacity: 0.6;
+}
+
+.progress-bubble-wave-delay {
+    animation-duration: 8s;
+    animation-delay: -3s;
+    opacity: 0.4;
+}
+
+@keyframes wave {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Percentage Display */
+.progress-bubble-percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 2px;
+    z-index: 10;
+    text-shadow: 0 2px 4px rgb(var(--black-rgb) / 0.3);
+}
+
+.progress-bubble-percentage-value {
+    font-weight: 700;
+    line-height: 1;
+}
+
+.progress-bubble-percentage-symbol {
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+/* Text Below Bubble */
+.progress-bubble-text {
+    text-align: center;
+    font-weight: 500;
+    color: rgb(var(--white-rgb) / 0.85);
+    text-shadow: 0 1px 2px rgb(var(--black-rgb) / 0.2);
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Size Variants */
+.progress-bubble-small .progress-bubble-circle {
+    width: 80px;
+    height: 80px;
+}
+
+.progress-bubble-small .progress-bubble-percentage-value {
+    font-size: 20px;
+}
+
+.progress-bubble-small .progress-bubble-percentage-symbol {
+    font-size: 12px;
+}
+
+.progress-bubble-small .progress-bubble-text {
+    font-size: 12px;
+}
+
+.progress-bubble-medium .progress-bubble-circle {
+    width: 120px;
+    height: 120px;
+}
+
+.progress-bubble-medium .progress-bubble-percentage-value {
+    font-size: 28px;
+}
+
+.progress-bubble-medium .progress-bubble-percentage-symbol {
+    font-size: 16px;
+}
+
+.progress-bubble-medium .progress-bubble-text {
+    font-size: 14px;
+}
+
+.progress-bubble-large .progress-bubble-circle {
+    width: 160px;
+    height: 160px;
+}
+
+.progress-bubble-large .progress-bubble-percentage-value {
+    font-size: 36px;
+}
+
+.progress-bubble-large .progress-bubble-percentage-symbol {
+    font-size: 20px;
+}
+
+.progress-bubble-large .progress-bubble-text {
+    font-size: 16px;
+}
+
+/* Color Variants - Primary */
+.progress-bubble-primary .progress-bubble-circle {
+    background: rgb(var(--white-rgb) / 0.05);
+    border-color: rgb(var(--white-rgb) / 0.2);
+}
+
+.progress-bubble-primary .progress-bubble-liquid {
+    background: linear-gradient(180deg, 
+        rgb(var(--info-rgb) / 0.8) 0%, 
+        rgb(var(--info-strong-rgb) / 0.9) 100%);
+}
+
+.progress-bubble-primary .progress-bubble-wave {
+    background: radial-gradient(circle, 
+        rgb(var(--info-rgb) / 0.6) 0%, 
+        rgb(var(--info-rgb) / 0.4) 50%, 
+        transparent 70%);
+}
+
+.progress-bubble-primary .progress-bubble-percentage {
+    color: rgb(var(--white-rgb));
+}
+
+.progress-bubble-primary .progress-bubble-text {
+    color: rgb(var(--info-light-rgb));
+}
+
+/* Color Variants - Secondary */
+.progress-bubble-secondary .progress-bubble-circle {
+    background: rgb(var(--white-rgb) / 0.03);
+    border-color: rgb(var(--white-rgb) / 0.15);
+}
+
+.progress-bubble-secondary .progress-bubble-liquid {
+    background: linear-gradient(180deg, 
+        rgb(var(--gray-400-rgb) / 0.7) 0%, 
+        rgb(var(--gray-500-rgb) / 0.8) 100%);
+}
+
+.progress-bubble-secondary .progress-bubble-wave {
+    background: radial-gradient(circle, 
+        rgb(var(--gray-300-rgb) / 0.5) 0%, 
+        rgb(var(--gray-400-rgb) / 0.3) 50%, 
+        transparent 70%);
+}
+
+.progress-bubble-secondary .progress-bubble-percentage {
+    color: rgb(var(--white-rgb) / 0.9);
+}
+
+.progress-bubble-secondary .progress-bubble-text {
+    color: rgb(var(--gray-300-rgb));
+}
+
+/* Color Variants - Success */
+.progress-bubble-success .progress-bubble-circle {
+    background: rgb(var(--success-rgb) / 0.08);
+    border-color: rgb(var(--success-rgb) / 0.3);
+}
+
+.progress-bubble-success .progress-bubble-liquid {
+    background: linear-gradient(180deg, 
+        rgb(var(--success-rgb) / 0.8) 0%, 
+        rgb(var(--success-strong-rgb) / 0.9) 100%);
+}
+
+.progress-bubble-success .progress-bubble-wave {
+    background: radial-gradient(circle, 
+        rgb(var(--success-light-rgb) / 0.6) 0%, 
+        rgb(var(--success-rgb) / 0.4) 50%, 
+        transparent 70%);
+}
+
+.progress-bubble-success .progress-bubble-percentage {
+    color: rgb(var(--white-rgb));
+}
+
+.progress-bubble-success .progress-bubble-text {
+    color: rgb(var(--success-light-rgb));
+}
+
+/* Color Variants - Info */
+.progress-bubble-info .progress-bubble-circle {
+    background: rgb(var(--sky-rgb) / 0.08);
+    border-color: rgb(var(--sky-rgb) / 0.3);
+}
+
+.progress-bubble-info .progress-bubble-liquid {
+    background: linear-gradient(180deg, 
+        rgb(var(--sky-rgb) / 0.8) 0%, 
+        rgb(var(--sky-strong-rgb) / 0.9) 100%);
+}
+
+.progress-bubble-info .progress-bubble-wave {
+    background: radial-gradient(circle, 
+        rgb(var(--sky-light-rgb) / 0.6) 0%, 
+        rgb(var(--sky-rgb) / 0.4) 50%, 
+        transparent 70%);
+}
+
+.progress-bubble-info .progress-bubble-percentage {
+    color: rgb(var(--white-rgb));
+}
+
+.progress-bubble-info .progress-bubble-text {
+    color: rgb(var(--sky-light-rgb));
+}
+
+/* Color Variants - Warning */
+.progress-bubble-warning .progress-bubble-circle {
+    background: rgb(var(--warning-rgb) / 0.08);
+    border-color: rgb(var(--warning-rgb) / 0.3);
+}
+
+.progress-bubble-warning .progress-bubble-liquid {
+    background: linear-gradient(180deg, 
+        rgb(var(--warning-rgb) / 0.8) 0%, 
+        rgb(var(--warning-strong-rgb) / 0.9) 100%);
+}
+
+.progress-bubble-warning .progress-bubble-wave {
+    background: radial-gradient(circle, 
+        rgb(var(--warning-light-rgb) / 0.6) 0%, 
+        rgb(var(--warning-rgb) / 0.4) 50%, 
+        transparent 70%);
+}
+
+.progress-bubble-warning .progress-bubble-percentage {
+    color: rgb(var(--white-rgb));
+}
+
+.progress-bubble-warning .progress-bubble-text {
+    color: rgb(var(--warning-light-rgb));
+}
+
+/* Color Variants - Danger */
+.progress-bubble-danger .progress-bubble-circle {
+    background: rgb(var(--danger-rgb) / 0.08);
+    border-color: rgb(var(--danger-rgb) / 0.3);
+}
+
+.progress-bubble-danger .progress-bubble-liquid {
+    background: linear-gradient(180deg, 
+        rgb(var(--danger-rgb) / 0.8) 0%, 
+        rgb(var(--danger-strong-rgb) / 0.9) 100%);
+}
+
+.progress-bubble-danger .progress-bubble-wave {
+    background: radial-gradient(circle, 
+        rgb(var(--danger-light-rgb) / 0.6) 0%, 
+        rgb(var(--danger-rgb) / 0.4) 50%, 
+        transparent 70%);
+}
+
+.progress-bubble-danger .progress-bubble-percentage {
+    color: rgb(var(--white-rgb));
+}
+
+.progress-bubble-danger .progress-bubble-text {
+    color: rgb(var(--danger-light-rgb));
+}

@@ -1,0 +1,17 @@
+.score-distribution-chart-root {
+    width: 100%;
+    min-height: 280px;
+}
+
+.score-distribution-chart-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+    border-radius: 12px;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 13px;
+    letter-spacing: 0.2px;
+    background: rgba(255, 255, 255, 0.04);
+}

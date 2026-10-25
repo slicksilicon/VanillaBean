@@ -1,0 +1,28 @@
+# OS / logs
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+
+# Node / Vite
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Vercel
+.vercel/
+
+# Environment - .env holds public build config and is committed; local overrides (backend URLs) are not
+.env.local
+.env.*.local
+
+# Backend codegen scratch space (build-backends.sh)
+.codegen/
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Python bytecode (tools/, codegen/)
+__pycache__/

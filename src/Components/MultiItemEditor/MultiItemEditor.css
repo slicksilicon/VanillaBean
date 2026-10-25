@@ -1,0 +1,111 @@
+/* ── MultiItemEditor ── */
+
+.mie-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mie-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 2px 0;
+    border-radius: 6px;
+    transition: background 0.1s;
+}
+
+.mie-row--drag-over {
+    background: rgb(var(--sky-light-rgb) / 0.08);
+    outline: 1px dashed rgb(var(--sky-light-rgb) / 0.4);
+}
+
+.mie-drag-handle {
+    flex-shrink: 0;
+    font-size: 14px;
+    color: rgb(var(--white-rgb) / 0.25);
+    cursor: grab;
+    user-select: none;
+    padding: 0 2px;
+    line-height: 1;
+}
+
+.mie-drag-handle:active {
+    cursor: grabbing;
+}
+
+.mie-input {
+    flex: 1;
+    background: rgb(var(--white-rgb) / 0.05);
+    border: 1px solid rgb(var(--white-rgb) / 0.12);
+    border-radius: 6px;
+    padding: 7px 10px;
+    font-size: 13px;
+    color: rgb(var(--white-rgb) / 0.85);
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.15s, background 0.15s;
+    min-width: 0;
+}
+
+.mie-input::placeholder {
+    color: rgb(var(--white-rgb) / 0.28);
+}
+
+.mie-input:focus {
+    border-color: rgb(var(--sky-light-rgb) / 0.5);
+    background: rgb(var(--white-rgb) / 0.07);
+}
+
+.mie-remove-btn {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    background: none;
+    border: 1px solid rgb(var(--danger-light-rgb) / 0.3);
+    border-radius: 50%;
+    color: rgb(var(--danger-light-rgb) / 0.6);
+    font-size: 11px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    line-height: 1;
+}
+
+.mie-remove-btn:hover {
+    background: rgb(var(--danger-light-rgb) / 0.12);
+    border-color: rgb(var(--danger-light-rgb) / 0.6);
+    color: rgb(var(--danger-light-rgb) / 0.9);
+}
+
+.mie-add-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    padding: 6px 10px;
+    background: none;
+    border: 1px dashed rgb(var(--white-rgb) / 0.18);
+    border-radius: 6px;
+    color: rgb(var(--white-rgb) / 0.45);
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    font-family: inherit;
+    align-self: flex-start;
+}
+
+.mie-add-btn:hover {
+    background: rgb(var(--white-rgb) / 0.05);
+    border-color: rgb(var(--white-rgb) / 0.3);
+    color: rgb(var(--white-rgb) / 0.7);
+}
+
+.mie-add-icon {
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 300;
+}

@@ -1,0 +1,189 @@
+/* TextInput with Liquid Glass Design */
+.text-input-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    height : 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.text-input-container.left {
+    flex-direction: column;
+}
+
+.text-input-main-row {
+    display: flex;
+    align-items: center;
+    width: 100%;    
+    gap: 12px;
+}
+
+.text-input-container.left .text-input-main-row {
+    flex-direction: row;
+}
+
+.text-input-container.top .text-input-main-row,
+.text-input-container.none .text-input-main-row {
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Description Styling */
+.text-input-description {
+    color: rgb(var(--white-rgb) / 0.8);
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgb(var(--black-rgb) / 0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.text-input-description.top {
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.text-input-description.left {
+    flex-shrink: 0;
+    min-width: 80px;
+    max-width: 30%;
+    text-align: right;
+    padding-right: 8px;
+}
+
+/* Main Text Input Wrapper */
+.text-input-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    min-width: 120px;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Text Input Field */
+.text-input-field {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 40px;
+    padding: 8px 12px;
+    background: rgb(var(--white-rgb) / 0.1);
+    border: 1px solid rgb(var(--white-rgb) / 0.2);
+    border-radius: 12px;
+    color: rgb(var(--white-rgb) / 0.9);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    box-shadow: 0 4px 16px rgb(var(--black-rgb) / 0.1), inset 0 1px 0 rgb(var(--white-rgb) / 0.2);
+    font-weight: 500;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.text-input-field::placeholder {
+    color: rgb(var(--white-rgb) / 0.5);
+    font-weight: 400;
+}
+
+.text-input-field:hover {
+    background: rgb(var(--white-rgb) / 0.15);
+    border-color: rgb(var(--white-rgb) / 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgb(var(--black-rgb) / 0.15), inset 0 1px 0 rgb(var(--white-rgb) / 0.3);
+}
+
+.text-input-wrapper.focused .text-input-field {
+    background: rgb(var(--white-rgb) / 0.2);
+    border-color: rgb(var(--white-rgb) / 0.4);
+    box-shadow: 0 4px 16px rgb(var(--black-rgb) / 0.2), inset 0 1px 0 rgb(var(--white-rgb) / 0.3);
+}
+
+.text-input-field:focus-visible {
+    outline: 2px solid rgb(var(--white-rgb) / 0.5);
+    outline-offset: 2px;
+}
+
+/* Disabled State */
+.text-input-wrapper.disabled .text-input-field {
+    background: rgb(var(--white-rgb) / 0.05);
+    border-color: rgb(var(--white-rgb) / 0.1);
+    color: rgb(var(--white-rgb) / 0.4);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.text-input-wrapper.disabled .text-input-field:hover {
+    background: rgb(var(--white-rgb) / 0.05);
+    border-color: rgb(var(--white-rgb) / 0.1);
+    transform: none;
+    box-shadow: 0 4px 16px rgb(var(--black-rgb) / 0.1), inset 0 1px 0 rgb(var(--white-rgb) / 0.2);
+}
+
+.text-input-wrapper.disabled .text-input-field::placeholder {
+    color: rgb(var(--white-rgb) / 0.3);
+}
+
+/* Hide number input arrows/spinners */
+.text-input-field[type="number"]::-webkit-outer-spin-button,
+.text-input-field[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.text-input-field[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* Selection styling */
+.text-input-field::selection {
+    background: rgb(var(--white-rgb) / 0.3);
+    color: rgb(var(--black-rgb) / 0.8);
+}
+
+/* Animation for initial load */
+@keyframes textInputFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.text-input-container {
+    animation: textInputFadeIn 0.4s ease-out;
+}
+
+/* Responsive font sizing adjustments */
+@container (max-width: 150px) {
+    .text-input-field {
+        font-size: 13px !important;
+    }
+
+    .text-input-description {
+        font-size: 12px !important;
+    }
+}
+
+@container (max-width: 100px) {
+    .text-input-field {
+        font-size: 11px !important;
+    }
+
+    .text-input-description {
+        font-size: 10px !important;
+    }
+
+    .text-input-field {
+        padding: 6px 8px;
+        min-height: 30px;
+    }
+}

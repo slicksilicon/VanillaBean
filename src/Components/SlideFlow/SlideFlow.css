@@ -1,0 +1,19 @@
+.slide-flow{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.slide-flow-track{
+    display: flex;
+    height: 100%;
+    transition: transform 0.35s ease;
+    will-change: transform;
+}
+
+.slide-flow-step{
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+}

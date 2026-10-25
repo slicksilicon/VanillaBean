@@ -1,0 +1,7 @@
+export const ICON_SVG_TOAST_COLOR = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 2A10 10 0 0 1 22 12" stroke="#E74C3C" stroke-width="4"/>
+  <path d="M22 12A10 10 0 0 1 12 22" stroke="#F1C40F" stroke-width="4"/>
+  <path d="M12 22A10 10 0 0 1 2 12" stroke="#2ECC71" stroke-width="4"/>
+  <path d="M2 12A10 10 0 0 1 12 2" stroke="#3498DB" stroke-width="4"/>
+
+  <path d="M7 9L7 12A2 2 0 0 0 11 12L11 9Z" fill="#C0392B"/> <path d="M7 9L7 12A2 2 0 0 0 11 12L11 9M9 12L9 16M7 16L11 16" fill="none" stroke="#333" stroke-width="1.5"/> <path d="M13 9L13 12A2 2 0 0 0 17 12L17 9Z" fill="#C0392B"/> <path d="M13 9L13 12A2 2 0 0 0 17 12L17 9M15 12L15 16M13 16L17 16" fill="none" stroke="#333" stroke-width="1.5"/> <path d="M5 17C6 15 8 14 9 14C10 14 10.5 15 10 16C9.5 17 8 18 5 17Z" fill="#F5CBA7" stroke="#333" stroke-width="1.5"/> <path d="M19 17C18 15 16 14 15 14C14 14 13.5 15 14 16C14.5 17 16 18 19 17Z" fill="#F5CBA7" stroke="#333" stroke-width="1.5"/> <path d="M12 7L12 5M10 8L9 7M14 8L15 7" stroke="#F1C40F" stroke-width="1.5" stroke-linecap="round"/> <circle cx="6" cy="6" r="1" fill="#3498DB"/> <circle cx="18" cy="6" r="1" fill="#2ECC71"/> <circle cx="12" cy="18" r="1" fill="#E74C3C"/> </svg>`;

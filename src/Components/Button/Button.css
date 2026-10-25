@@ -1,0 +1,311 @@
+/* Liquid Glass Button Styles */
+.liquid-glass-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    border-radius: 12px;
+    border: 1px solid transparent;
+    box-shadow: 0 8px 32px rgb(var(--black-rgb) / 0.1);
+    overflow: hidden;
+    text-shadow: 0 1px 2px rgb(var(--black-rgb) / 0.2);
+}
+
+.liquid-glass-button:hover {
+    transform: translateY(0px);
+    box-shadow: 0 12px 40px rgb(var(--black-rgb) / 0.15);
+}
+
+.liquid-glass-button:active {
+    transform: translateY(-1px);
+    transition: all 0.1s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.liquid-glass-button:focus-visible {
+    outline: 2px solid rgb(var(--white-rgb) / 0.5);
+    outline-offset: 2px;
+}
+
+/* Button Variants */
+
+/* Primary Button */
+.button-primary {
+    background: rgb(var(--white-rgb) / 0.2);
+    border-color: rgb(var(--white-rgb) / 0.3);
+    color: rgb(var(--white-rgb));
+}
+
+.button-primary:hover {
+    background: rgb(var(--white-rgb) / 0.3);
+    border-color: rgb(var(--white-rgb) / 0.5);
+    color: rgb(var(--white-rgb));
+}
+
+.button-primary:active {
+    background: rgb(var(--white-rgb) / 0.25);
+}
+
+/* Secondary Button */
+.button-secondary {
+    background: rgb(var(--white-rgb) / 0.1);
+    border-color: rgb(var(--white-rgb) / 0.2);
+    color: rgb(var(--white-rgb) / 0.9);
+}
+
+.button-secondary:hover {
+    background: rgb(var(--white-rgb) / 0.18);
+    border-color: rgb(var(--white-rgb) / 0.35);
+    color: rgb(var(--white-rgb));
+}
+
+.button-secondary:active {
+    background: rgb(var(--white-rgb) / 0.15);
+}
+
+/* Success Button */
+.button-success {
+    background: rgb(var(--success-rgb) / 0.2);
+    border-color: rgb(var(--success-rgb) / 0.4);
+    color: rgb(var(--success-light-rgb));
+}
+
+.button-success:hover {
+    background: rgb(var(--success-rgb) / 0.3);
+    border-color: rgb(var(--success-rgb) / 0.6);
+    color: rgb(var(--success-light-rgb));
+}
+
+.button-success:active {
+    background: rgb(var(--success-rgb) / 0.25);
+}
+
+/* Info Button */
+.button-info {
+    background: rgb(var(--info-rgb) / 0.2);
+    border-color: rgb(var(--info-rgb) / 0.4);
+    color: rgb(var(--info-light-rgb));
+}
+
+.button-info:hover {
+    background: rgb(var(--info-rgb) / 0.3);
+    border-color: rgb(var(--info-rgb) / 0.6);
+    color: rgb(var(--info-light-rgb));
+}
+
+.button-info:active {
+    background: rgb(var(--info-rgb) / 0.25);
+}
+
+/* Warning Button */
+.button-warning {
+    background: rgb(var(--warning-rgb) / 0.2);
+    border-color: rgb(var(--warning-rgb) / 0.4);
+    color: rgb(var(--warning-light-rgb));
+}
+
+.button-warning:hover {
+    background: rgb(var(--warning-rgb) / 0.3);
+    border-color: rgb(var(--warning-rgb) / 0.6);
+    color: rgb(var(--warning-light-rgb));
+}
+
+.button-warning:active {
+    background: rgb(var(--warning-rgb) / 0.25);
+}
+
+/* Danger Button */
+.button-danger {
+    background: rgb(var(--danger-rgb) / 0.2);
+    border-color: rgb(var(--danger-rgb) / 0.4);
+    color: rgb(var(--danger-light-rgb));
+}
+
+.button-danger:hover {
+    background: rgb(var(--danger-rgb) / 0.3);
+    border-color: rgb(var(--danger-rgb) / 0.6);
+    color: rgb(var(--danger-light-rgb));
+}
+
+.button-danger:active {
+    background: rgb(var(--danger-rgb) / 0.25);
+}
+
+/* Gilded Noir Button */
+.button-gilded-noir {
+    background: rgb(var(--gold-rgb) / 0.85);
+    border-color: rgb(var(--gold-bright-rgb));
+    color: rgb(var(--gold-cream-rgb));
+    box-shadow: 0 8px 32px rgb(var(--gold-rgb) / 0.3), inset 0 1px 0 rgb(var(--gold-bright-rgb) / 0.3);
+}
+
+.button-gilded-noir:hover {
+    background: rgb(var(--gold-rgb) / 0.9);
+    border-color: rgb(var(--gold-bright-rgb));
+    color: rgb(var(--white-rgb));
+    box-shadow: 0 12px 40px rgb(var(--gold-rgb) / 0.4), inset 0 1px 0 rgb(var(--gold-bright-rgb) / 0.5);
+}
+
+.button-gilded-noir:active {
+    background: rgb(var(--gold-rgb) / 0.9);
+    border-color: rgb(var(--gold-bright-rgb) / 0.9);
+    box-shadow: 0 6px 24px rgb(var(--gold-rgb) / 0.3), inset 0 2px 4px rgb(var(--black-rgb) / 0.2);
+}
+
+.button-gilded-noir.button-disabled {
+    background: rgb(var(--gold-rgb) / 0.4);
+    border-color: rgb(var(--gold-bright-rgb) / 0.4);
+    color: rgb(var(--gold-cream-rgb) / 0.5);
+}
+
+/* Button Sizes */
+.button-small {
+    padding: 8px 16px;
+    font-size: 13px;
+    border-radius: 10px;
+    min-height: 32px;
+}
+
+.button-medium {
+    padding: 12px 24px;
+    font-size: 14px;
+    border-radius: 12px;
+    min-height: 40px;
+}
+
+.button-large {
+    padding: 16px 32px;
+    font-size: 16px;
+    border-radius: 14px;
+    min-height: 48px;
+}
+
+/* Button States */
+.button-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.button-loading {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.button-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.button-content-hidden {
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Loading Spinner */
+.button-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgb(var(--white-rgb) / 0.3);
+    border-top: 2px solid rgb(var(--white-rgb) / 0.8);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .button-large {
+        padding: 14px 28px;
+        font-size: 15px;
+    }
+    
+    .button-medium {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+    
+    .button-small {
+        padding: 7px 14px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .liquid-glass-button {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .button-large {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+    
+    .button-medium {
+        padding: 10px 18px;
+        font-size: 13px;
+    }
+    
+    .button-small {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+}
+
+/* Focus and Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .liquid-glass-button {
+        transition: none;
+    }
+    
+    .liquid-glass-button:hover {
+        transform: none;
+    }
+    
+    .liquid-glass-button:active {
+        transform: none;
+    }
+    
+    .spinner {
+        animation: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .liquid-glass-button {
+        border-width: 2px;
+    }
+    
+    .button-primary {
+        background: rgb(var(--white-rgb) / 0.4);
+        border-color: rgb(var(--white-rgb) / 0.8);
+    }
+    
+    .button-secondary {
+        background: rgb(var(--white-rgb) / 0.2);
+        border-color: rgb(var(--white-rgb) / 0.6);
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "features": {
+        "api": false,
+        "auth": "none",
+        "database": "none"
+    },
+    "google": {
+        "clientId": "",
+        "scopes": "openid email profile"
+    }
+}

@@ -20,4 +20,12 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
+  {
+    // The app's API runs on Node (Vercel functions, server/dev.ts), not in the browser.
+    files: ['server/**/*.ts', 'api/**/*.ts', 'tools/**/*.mjs'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      globals: globals.node,
+    },
+  },
 ])

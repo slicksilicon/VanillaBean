@@ -1,0 +1,346 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "vanillabean",
+    "version": "0.0.0"
+  },
+  "components": {
+    "schemas": {
+      "VersionResponse": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string",
+            "description": "Current API version in semantic versioning format (MAJOR.MINOR.PATCH)"
+          }
+        },
+        "required": [
+          "version"
+        ],
+        "description": "Response model for API version information."
+      },
+      "UserInfo": {
+        "type": "object",
+        "properties": {
+          "google_id": {
+            "type": "string",
+            "description": "Google account unique identifier"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email address"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's display name"
+          },
+          "picture_url": {
+            "type": "string",
+            "default": "",
+            "description": "URL to user's profile picture"
+          }
+        },
+        "required": [
+          "google_id",
+          "email",
+          "name"
+        ],
+        "description": "User information returned in API responses."
+      },
+      "GoogleCallbackRequest": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Authorization code received from Google OAuth2 consent flow"
+          },
+          "redirect_uri": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Redirect URI used in the OAuth2 flow - \"postmessage\" for the popup flow"
+          }
+        },
+        "required": [
+          "code",
+          "redirect_uri"
+        ],
+        "description": "Request model for Google OAuth2 authorization code exchange."
+      },
+      "LogoutResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Logout confirmation message"
+          }
+        },
+        "required": [
+          "message"
+        ],
+        "description": "Response model for logout endpoint."
+      },
+      "Note": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Note id (MongoDB ObjectId as hex)"
+          },
+          "text": {
+            "type": "string",
+            "description": "Note text"
+          },
+          "owner": {
+            "type": "string",
+            "description": "Email of the user who wrote it, or \"anonymous\" when sign-in is off"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation time, ISO 8601 UTC"
+          }
+        },
+        "required": [
+          "id",
+          "text",
+          "owner",
+          "created_at"
+        ],
+        "description": "A note stored in MongoDB - the database demo."
+      },
+      "CreateNoteRequest": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "description": "Note text, 1-2000 characters"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "description": "Request model for creating a note."
+      },
+      "DeleteNoteResponse": {
+        "type": "object",
+        "properties": {
+          "deleted": {
+            "type": "boolean",
+            "description": "True when the note existed and was removed"
+          }
+        },
+        "required": [
+          "deleted"
+        ],
+        "description": "Response model for deleting a note."
+      }
+    },
+    "parameters": {}
+  },
+  "paths": {
+    "/api/version/": {
+      "get": {
+        "operationId": "get_version_api_version__get",
+        "tags": [
+          "Version"
+        ],
+        "summary": "Get Version",
+        "responses": {
+          "200": {
+            "description": "The API version",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VersionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/google/callback": {
+      "post": {
+        "operationId": "google_callback_api_auth_google_callback_post",
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Google Callback",
+        "description": "Exchange a Google authorization code for app authentication and set the HttpOnly session cookie.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GoogleCallbackRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The signed-in user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/me": {
+      "get": {
+        "operationId": "get_current_user_info_api_auth_me_get",
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Get Current User Info",
+        "responses": {
+          "200": {
+            "description": "The signed-in user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/refresh": {
+      "post": {
+        "operationId": "refresh_token_api_auth_refresh_post",
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Refresh Token",
+        "description": "Issue a fresh session cookie for the signed-in user, extending the session.",
+        "responses": {
+          "200": {
+            "description": "The signed-in user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "operationId": "logout_api_auth_logout_post",
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Logout",
+        "responses": {
+          "200": {
+            "description": "Logout confirmation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/notes": {
+      "get": {
+        "operationId": "get_notes_api_notes_get",
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Get Notes",
+        "responses": {
+          "200": {
+            "description": "Notes, newest first",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Note"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "create_note_api_notes_post",
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Create Note",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateNoteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The created note",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Note"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/notes/{note_id}": {
+      "delete": {
+        "operationId": "delete_note_api_notes__note_id__delete",
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Delete Note",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "note_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Whether a note was removed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteNoteResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "webhooks": {}
+}

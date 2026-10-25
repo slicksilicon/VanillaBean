@@ -4,3 +4,5 @@
 .codegen/
 dist/
 node_modules/
+# features.api is off - deploy no function
+/api/

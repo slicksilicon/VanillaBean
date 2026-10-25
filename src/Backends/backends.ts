@@ -20,7 +20,7 @@ export function backendUrl(name: string): string | undefined {
     return value.trim().replace(/\/+$/, "");
 }
 
-/** Parse a segment's comma-separated `requiredBackends` export into backend names. */
+/** Parse a segment's comma-separated `requiredBackends` / `requiredFeatures` export into names. */
 export function parseBackendList(value: string | undefined): string[] {
     if (!value) {
         return [];

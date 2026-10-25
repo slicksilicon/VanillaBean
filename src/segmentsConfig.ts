@@ -2,19 +2,22 @@
 //
 // Every folder under src/Segments/ whose <Folder>/<Folder>.tsx exports `segmentName` becomes a tab. Vite resolves the
 // glob at build time, so there is no codegen step and nothing for Vercel to generate. A segment that calls
-// EscapeVelocity backends also exports `requiredBackends` (comma-separated folder names under src/Backends/); it is
-// left out when any of those backends is not configured for this build.
+// EscapeVelocity backends also exports `requiredBackends` (comma-separated folder names under src/Backends/), and one
+// that needs an optional VanillaBean feature exports `requiredFeatures` (comma-separated: api, auth, database). It is
+// left out when any of those backends is not configured, or any of those features is off, for this build.
 //
 // The glob imports every .tsx directly inside a segment folder, so keep a segment's helper components in a
 // subfolder (e.g. SubSegments/), as EscapeVelocity does.
 
 import type { ComponentType } from 'react';
 import { backendUrl, parseBackendList } from './Backends/backends';
+import { isFeatureEnabled } from './features';
 
 interface SegmentModule {
     default: ComponentType;
     segmentName?: string;
     requiredBackends?: string;
+    requiredFeatures?: string;
 }
 
 export interface SegmentConfig {
@@ -48,6 +51,9 @@ function discoverSegments(): SegmentConfig[] {
         }
         const requiredBackends = parseBackendList(module.requiredBackends);
         if (requiredBackends.some(name => !backendUrl(name))) {
+            continue;
+        }
+        if (parseBackendList(module.requiredFeatures).some(name => !isFeatureEnabled(name))) {
             continue;
         }
         found.push({ name: module.segmentName, component: module.default, requiredBackends });

@@ -5,6 +5,8 @@
 #   ./build-backends.sh                      Regenerate every backend already under src/Backends/
 #   ./build-backends.sh Tools Scout          Generate (or regenerate) the named backends
 #   ./build-backends.sh Tools --spec FILE    Generate from a saved openapi.json instead of the live backend
+#   ./build-backends.sh App                  Generate hooks for this app's own API (server/) - spec read from the code,
+#                                            hooks call same-origin /api/... (no env var, nothing running)
 #
 # A backend is named by its folder, src/Backends/<Name>/, and found at VITE_BACKEND_<NAME uppercased>_URL in .env.local
 # (e.g. Tools -> VITE_BACKEND_TOOLS_URL=http://localhost:18700). For each one this:
@@ -86,6 +88,9 @@ for env_file in .env .env.local; do
     done < "$env_file"
 done
 
+# This app's own API in server/ - generated like any backend, but from the code and with same-origin URLs.
+APP_BACKEND="App"
+
 # The exact base-URL expression generate-queries.sh emits.
 EV_URL_EXPR='${import.meta.env.VITE_API_BACKEND_URL}:${import.meta.env.VITE_API_BACKEND_PORT}'
 
@@ -100,7 +105,11 @@ for name in "${names[@]}"; do
     rm -rf "$stage"
     mkdir -p "$stage/src"
 
-    if [ -n "$spec_file" ]; then
+    if [ "$name" = "$APP_BACKEND" ]; then
+        # This app's own API (server/): the spec comes straight from the code, so no server has to be running.
+        echo "Writing spec from server/ (every route, whatever the features)"
+        npx tsx server/scripts/openapi.ts > "$stage/openapi.json" || fail "server/scripts/openapi.ts failed"
+    elif [ -n "$spec_file" ]; then
         echo "Using spec $spec_file"
         cp "$spec_file" "$stage/openapi.json"
     else
@@ -119,6 +128,10 @@ for name in "${names[@]}"; do
     ) || fail "code generation failed for $name (rerun the codegen/ev scripts inside .codegen/$name to see why)"
 
     replacement="\${import.meta.env.${env_var}}"
+    if [ "$name" = "$APP_BACKEND" ]; then
+        # Same origin on Vercel and in dev (Vite proxies /api), so the hooks call plain /api/... paths.
+        replacement=""
+    fi
     find "$stage/src/Query" -maxdepth 1 -name '*.ts' -print0 | while IFS= read -r -d '' file; do
         EV_URL_EXPR="$EV_URL_EXPR" REPLACEMENT="$replacement" python3 -I -c '
 import os, sys

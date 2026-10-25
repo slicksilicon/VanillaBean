@@ -7,6 +7,9 @@ import Splash from './Segments/Splash'
 
 import ErrorBoundary from './Error/ErrorBoundary'
 import BackendGate from './Backends/BackendGate'
+import AuthGate from './Auth/AuthGate'
+import UserCard from './Auth/UserCard'
+import { features } from './features'
 
 function AppShell() {
   const { selectedSegment, setSelectedSegment } = useAppSettings();
@@ -57,6 +60,7 @@ function AppShell() {
                 colorScheme="primary"
                 className="custom-segment"
             />
+            {features.authGoogle && <UserCard />}
         </div>
         <div className="app-main">
             {renderApplication()}
@@ -66,11 +70,14 @@ function AppShell() {
 }
 
 function App() {
-    return (
+    const shell = (
         <AppSettingsProvider>
             <AppShell />
         </AppSettingsProvider>
     );
+
+    // With Google sign-in on, nothing renders until the session is confirmed - EscapeVelocity's login gate.
+    return features.authGoogle ? <AuthGate>{shell}</AuthGate> : shell;
 }
 
 export default App

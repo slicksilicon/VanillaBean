@@ -4,32 +4,105 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-VanillaBean is an application **template** for **front-end-only** single-page apps: React 19 + Vite 7 + TypeScript,
-deployed as static files to **Vercel**. It is derived from the EscapeVelocity template (`~/Workspaces/EscapeVelocity`)
+VanillaBean is an application **template** for single-page apps on **Vercel**: React 19 + Vite 7 + TypeScript, served
+as static files, with an optional TypeScript API that Vercel runs as a function next to them. It is derived from the EscapeVelocity template (`~/Workspaces/EscapeVelocity`)
 and kept in sync with it (see "Template lineage"). The UI shell, the top-row segment bar, the glassmorphism component
 library, the charts and the design tokens are EscapeVelocity's own files, copied byte-for-byte.
 
-There is no backend. Apps keep data in the browser (`useStoredState`), call third-party HTTP APIs, and - **only when
-run locally** - can call existing EscapeVelocity backends through generated hooks.
+Per app, `./configure.sh` switches on what it needs (see "Optional features"): its own API (`server/`), MongoDB behind
+that API (local mongod in dev, Atlas on Vercel), and app-wide Google sign-in. Without them it is a static site that keeps
+data in the browser (`useStoredState`) and calls third-party HTTP APIs. Independently, it can call existing
+EscapeVelocity backends **when run locally**.
 
-The `Sample`, `SubSegmentDemo` and `BackendDemo` segments are demos. Replace them with your own.
+The `Sample`, `SubSegmentDemo`, `BackendDemo` and `Notes` segments are demos. Replace them with your own.
 
-New projects: clone, then `./init_project.sh` (asks for the name, title and dev port, then `npm ci`).
+New projects: clone, then `./init_project.sh` (name, title and dev port, `npm ci`, then `./configure.sh`).
 
 ## Running
 
 - `./run.sh`: Vite dev server on the port in `vite.config.ts` (template default **7400**; EscapeVelocity apps use 7000-7300,
-  7500, 7700 and 7900).
-- `./check.sh`: ESLint, then `npm run build` (`tsc -b && vite build`). Exits non-zero if either fails. Run it before committing.
+  7500, 7700 and 7900). With `features.api` on it also starts `server/dev.ts` (`API_PORT`, default 7410) under
+  `tsx watch`, and Vite proxies `/api` to it - same origin, exactly like Vercel. No Vercel CLI or login is needed.
+- `./check.sh`: ESLint, the server typecheck (`tsconfig.server.json`), the router-registration check, then `npm run build`
+  (`tsc -b && vite build`). Exits non-zero if any fails. Run it before committing.
+- `./configure.sh`: choose the optional features (below). Safe to re-run; `--help` lists flags for unattended use.
 - Deploy: push to the Git repo connected to Vercel, or `npx vercel` / `npx vercel --prod`. `vercel.json` sets the Vite
-  framework, `npm ci`, the `dist` output, the SPA rewrite, security headers and immutable caching for `/assets/`.
+  framework, `npm ci`, the `dist` output, the `/api/*` rewrite to the function, the SPA rewrite, security headers (incl.
+  COOP for the Google popup) and immutable caching for `/assets/`.
 
 ## Configuration
 
 - **`.env` is committed** and holds public build-time config used by every build, Vercel's included: `VITE_APP_TITLE`.
   Vite inlines every `VITE_` variable into the public bundle, so **never put a secret in one**.
-- **`.env.local` is gitignored** (and listed in `.vercelignore`). It holds local-only overrides, mainly the EscapeVelocity
-  backend URLs. See `.env.local.sample`. Vite loads it on top of `.env`.
+- **`.env.local` is gitignored** (and listed in `.vercelignore`). It holds local-only values: EscapeVelocity backend URLs
+  and the API's dev secrets (`GOOGLE_CLIENT_SECRET`, `JWT_SECRET_KEY`, `ALLOWED_EMAILS`, `MONGODB_URI`,
+  `MONGODB_DATABASE`, `API_PORT`). See `.env.local.sample`; `./configure.sh` writes it. Vite loads it on top of `.env`, and
+  `server/dev.ts` runs with it as `--env-file`. **On Vercel the server values are project environment variables.**
+- **`vanillabean.config.json` is committed**: the feature switches and the public Google client id/scopes. Read by
+  `vite.config.ts` (compile-time flags) and `server/features.ts`, so both halves always agree.
+
+## Optional features (`./configure.sh` -> `vanillabean.config.json`)
+
+| Feature | Switch | Needs | What it adds |
+|---|---|---|---|
+| Own API | `features.api` | - | `server/` deployed as the Vercel function `api/index.ts`; hooks in `src/Backends/App/Query/` |
+| MongoDB | `features.database: "mongodb"` | api | `server/db/mongodb.ts`; the `Notes` demo |
+| Google sign-in | `features.auth: "google"` | api | app-wide login gate, allowlist, session cookie |
+
+- Features are **toggled, never pruned**: every app keeps all the code, so it stays identical to the template and a feature
+  can be switched on later. On the frontend the switches are compile-time constants (`src/features.ts`), so disabled
+  auth code drops out of the bundle. Segments are imported eagerly, so a hidden segment's code is still bundled - it is
+  just never shown.
+- A segment that needs a feature exports `export const requiredFeatures = "database"` (comma-separated: `api`, `auth`,
+  `database`) and is left out of the bar when any is off.
+- `features.api: false` adds `/api/` to `.vercelignore`, so no function is deployed.
+
+## The app's own API (`server/`, `features.api`)
+
+- TypeScript on Vercel's Node runtime: **Hono + `@hono/zod-openapi`**. `api/index.ts` is the only function; `vercel.json`
+  rewrites every `/api/*` to it. Laid out like EscapeVelocity's `BackEnd/`:
+  - `server/routes/routes_<name>.ts`: one router each (`createRouter()` from `server/router.ts`), every route declared with
+    `createRoute` (zod request/response schemas, `operationId`, `tags`). **Routes are thin shells** - anything another
+    caller might want goes in `server/tools/<Concern>/`. Register every router in `server/routes/index.ts` with the feature
+    that enables it (a bundled function cannot glob; `check.sh` fails on an unlisted file).
+  - `server/schema/<Type>.ts`: shared zod schemas, file named for the type, registered with `.openapi("<Type>")` so they
+    become named components (the generator needs `$ref`s). Keep endpoint-only schemas in the route file.
+  - `server/errors.ts`: EscapeVelocity's error envelope `{error, message, detail, details, status_code, path}`, with
+    `detail` = `"HTTP <status>: <message>"`. Throw `BadRequestError` / `NotFoundError` / `ForbiddenError` / ...; validation
+    failures are 422s. Never return a raw error to the client.
+  - `server/config.ts`: zod-validated environment (`settings`). `server/features.ts`: the config file.
+- **Segments never call the database.** Change `server/`, then run **`./build-backends.sh App`**: it writes the spec from
+  the code (`server/scripts/openapi.ts` - every route, whatever the features, so the hooks never change on a toggle) and
+  runs EscapeVelocity's generators, with same-origin `/api/...` URLs, into `src/Backends/App/Query/` (generated, committed,
+  never edited). Use the hooks like any generated hook; group invalidations in `src/Hooks/appInvalidation.ts`.
+- Server code uses Node ESM: relative imports end in `.js`, JSON imports use `with { type: "json" }`.
+
+## MongoDB (`features.database: "mongodb"`)
+
+- `server/db/mongodb.ts`: one `MongoClient` per function instance (cached on `globalThis`), `attachDatabasePool` so Vercel
+  closes idle connections, `maxPoolSize` 5 - Atlas's free M0 tier caps total connections and every warm instance holds a
+  pool. `getCollection<T>(name)` for access, `parseObjectId()` turns a bad id into a 400. An unreachable database is a 503.
+- Dev: the local mongod (`MONGODB_URI=mongodb://localhost:27017`), database `MONGODB_DATABASE` (default: project name).
+- Production: an Atlas M0 cluster. Network access must allow `0.0.0.0/0` (Vercel functions have no fixed IPs), or use the
+  MongoDB Atlas integration from the Vercel Marketplace, which also sets `MONGODB_URI`. Atlas's Data API is end-of-life
+  (Sept 2025) - the browser can never reach Atlas directly; it always goes through `server/`.
+- Without Google sign-in the API is public: anyone who finds the deployment can read and write the data.
+
+## Google sign-in (`features.auth: "google"`)
+
+- App-wide and **stateless**: `routes_auth.ts` serves EscapeVelocity's auth paths and operation ids
+  (`/api/auth/google/callback`, `/me`, `/refresh`, `/logout`), so EscapeVelocity's `useAuth.tsx` (imports repointed) and
+  `LoginScreen` work unchanged. The callback exchanges the popup's code with `GOOGLE_CLIENT_SECRET`, verifies the ID token
+  against Google's keys, checks `ALLOWED_EMAILS`, and sets an HS256 JWT (`JWT_SECRET_KEY`) in an HttpOnly, Secure,
+  SameSite=Lax cookie `auth-token-<project>`. No user is stored; the token carries the profile.
+- **Fails closed**: an empty `ALLOWED_EMAILS` admits nobody, and the middleware (`server/auth/middleware.ts`) re-checks the
+  allowlist on every request (403). An unset `JWT_SECRET_KEY` is a 503, never an open door. Use a different
+  `JWT_SECRET_KEY` per environment and never share it with another app.
+- Frontend: `src/Auth/AuthGate.tsx` (spinner, then `LoginScreen` or the app) and `src/Auth/UserCard.tsx` (top-row user card
+  with sign-out). A 401 from the app's own API returns to the login screen; a 401 from an EscapeVelocity backend does not
+  (`main.tsx` checks `/api/auth/me` first).
+- Google Cloud Console: the OAuth client needs only **Authorized JavaScript origins** (`http://localhost:<port>`,
+  `https://<project>.vercel.app`) - the popup flow uses `redirect_uri: "postmessage"`.
 
 ## Frontend architecture
 
@@ -56,7 +129,7 @@ New projects: clone, then `./init_project.sh` (asks for the name, title and dev 
 
 ## Calling EscapeVelocity backends (local only)
 
-- A backend is a folder `src/Backends/<Name>/`. Its URL is `VITE_BACKEND_<NAME uppercased>_URL` in `.env.local`
+- `App` is reserved for this app's own API (above). Any other backend is a folder `src/Backends/<Name>/`. Its URL is `VITE_BACKEND_<NAME uppercased>_URL` in `.env.local`
   (e.g. `Tools` -> `VITE_BACKEND_TOOLS_URL=http://localhost:18700`), with no trailing slash.
 - **Generate hooks** with `./build-backends.sh <Name>` (backend running), or with
   `./build-backends.sh <Name> --spec path/to/openapi.json`. `./build-backends.sh` with no arguments regenerates every

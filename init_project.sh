@@ -2,7 +2,8 @@
 # init_project.sh - turn a fresh clone of VanillaBean into a new project.
 #
 # Stamps the project name into package.json / package-lock.json, the title into .env, and the dev port into
-# vite.config.ts (and the sample backend origin note), then installs dependencies. Run once, right after cloning.
+# vite.config.ts (and the sample backend origin note), installs dependencies, then runs ./configure.sh to choose the
+# optional features. Run once, right after cloning.
 
 set -e
 
@@ -38,5 +39,7 @@ npm ci
 
 echo ""
 echo -e "${GREEN}Initialized $project_name (\"$app_title\") on port $port.${NC}"
-echo "Next: edit .env.local for any EscapeVelocity backends, add http://localhost:$port to their ALLOWED_FRONTEND_URLS,"
-echo "      then ./build-backends.sh <Name> and ./run.sh"
+echo ""
+
+# Optional features - Google sign-in, MongoDB, the app's own API, EscapeVelocity backends. Re-run any time.
+./configure.sh

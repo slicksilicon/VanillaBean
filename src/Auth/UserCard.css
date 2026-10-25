@@ -1,0 +1,10 @@
+/* App.css places the user icon at right: 60px to leave room for EscapeVelocity's log-window button, which VanillaBean
+   does not have. */
+.user-icon-wrapper-solo {
+    right: 20px;
+}
+
+.user-card-signout {
+    align-self: flex-start;
+    margin-top: 6px;
+}
